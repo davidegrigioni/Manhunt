@@ -1,2 +1,3 @@
 file-version: 1
-welcome-message: "<green>Ciao</green> <blue>Cazzo</blue>"
+teleport-world-message: "<green>You have been teleported to</green>"
+no-world-message: "<red>No World has been found or you typed wrong.</red>"

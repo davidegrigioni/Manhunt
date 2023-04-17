@@ -11,16 +11,15 @@ import org.bukkit.entity.Player;
 @Permission("manhunt.testgui")
 public class TestGUICommand {
 
-    private MainGUI mainGUI;
-    private StartManhuntGUI startManhuntGUI;
-
     @Execute(route = "main")
     void mainGUITest(Player player) {
+        MainGUI mainGUI = new MainGUI();
         mainGUI.guiCreation().show(player);
     }
 
     @Execute(route = "start")
     void startGUITest(Player player) {
+        StartManhuntGUI startManhuntGUI = new StartManhuntGUI();
         startManhuntGUI.guiCreation().show(player);
     }
 

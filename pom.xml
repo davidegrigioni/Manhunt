@@ -39,6 +39,16 @@
                         </goals>
                         <configuration>
                             <createDependencyReducedPom>false</createDependencyReducedPom>
+                            <relocations>
+                                <relocation>
+                                    <pattern>fr.mrmicky.fastboard</pattern>
+                                    <shadedPattern>cc.davyy.manhunt</shadedPattern>
+                                    <pattern>dev.dejvokep.boostedyaml</pattern>
+                                    <shadedPattern>cc.davyy.manhunt</shadedPattern>
+                                    <pattern>com.github.stefvanschie.inventoryframework</pattern>
+                                    <shadedPattern>cc.davyy.manhunt.inventoryframework</shadedPattern>
+                                </relocation>
+                            </relocations>
                         </configuration>
                     </execution>
                 </executions>
@@ -88,6 +98,11 @@
             <groupId>com.github.stefvanschie.inventoryframework</groupId>
             <artifactId>IF</artifactId>
             <version>0.10.9</version>
+        </dependency>
+        <dependency>
+            <groupId>fr.mrmicky</groupId>
+            <artifactId>fastboard</artifactId>
+            <version>1.2.1</version>
         </dependency>
     </dependencies>
 </project>
