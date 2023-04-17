@@ -2,7 +2,7 @@ package cc.davyy.manhunt.utils;
 
 public enum MessageUtils {
 
-    EXAMPLE("");
+    WELCOME_MESSAGE("welcome-message");
 
     private final String message;
 
