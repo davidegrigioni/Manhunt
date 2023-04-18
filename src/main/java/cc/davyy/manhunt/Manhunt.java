@@ -4,6 +4,7 @@ import cc.davyy.manhunt.cmds.ManhuntCommand;
 import cc.davyy.manhunt.cmds.TeleportWorldCommand;
 import cc.davyy.manhunt.cmds.TestGUICommand;
 import cc.davyy.manhunt.listeners.PlayerJoinListener;
+import cc.davyy.manhunt.utils.PlayerArgument;
 import cc.davyy.manhunt.worlds.WorldArgument;
 import dev.dejvokep.boostedyaml.YamlDocument;
 import dev.dejvokep.boostedyaml.dvs.versioning.BasicVersioning;
@@ -45,11 +46,12 @@ public final class Manhunt extends JavaPlugin {
     private void registerCommands() {
         this.liteCommands = LiteBukkitFactory.builder(this.getServer(), "manhunt")
                 .commandInstance(
-                        new ManhuntCommand(),
+                        new ManhuntCommand(this),
                         new TeleportWorldCommand(this),
                         new TestGUICommand())
                 .contextualBind(Player.class, new BukkitOnlyPlayerContextual<>("This command is only available for players!"))
                 .argument(World.class, new WorldArgument(this))
+                .argument(Player.class, new PlayerArgument(this))
                 .register();
     }
 

@@ -1,6 +1,7 @@
 package cc.davyy.manhunt.cmds;
 
 import cc.davyy.manhunt.guis.MainGUI;
+import cc.davyy.manhunt.guis.SettingsGUI;
 import cc.davyy.manhunt.guis.StartManhuntGUI;
 import dev.rollczi.litecommands.command.execute.Execute;
 import dev.rollczi.litecommands.command.permission.Permission;
@@ -21,6 +22,12 @@ public class TestGUICommand {
     void startGUITest(Player player) {
         StartManhuntGUI startManhuntGUI = new StartManhuntGUI();
         startManhuntGUI.guiCreation().show(player);
+    }
+
+    @Execute(route = "settings")
+    void settingsGUITest(Player player) {
+        SettingsGUI settingsGUI = new SettingsGUI();
+        settingsGUI.guiCreation().show(player);
     }
 
 }

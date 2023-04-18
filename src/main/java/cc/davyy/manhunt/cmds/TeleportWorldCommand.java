@@ -29,7 +29,7 @@ public class TeleportWorldCommand {
             player.sendMessage(ColorUtils.colorize(message + " " + world.getName()));
 
         } else {
-            String message = instance.getMessages().getString(MessageUtils.NO_WORLD_FOUND.getMessage());
+            String message = instance.getMessages().getString(MessageUtils.NO_WORLD_FOUND_MESSAGE.getMessage());
             player.sendMessage(ColorUtils.colorize(message));
         }
     }
