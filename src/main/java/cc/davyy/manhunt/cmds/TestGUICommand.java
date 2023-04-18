@@ -1,5 +1,6 @@
 package cc.davyy.manhunt.cmds;
 
+import cc.davyy.manhunt.Manhunt;
 import cc.davyy.manhunt.guis.MainGUI;
 import cc.davyy.manhunt.guis.SettingsGUI;
 import cc.davyy.manhunt.guis.StartManhuntGUI;
@@ -12,15 +13,21 @@ import org.bukkit.entity.Player;
 @Permission("manhunt.testgui")
 public class TestGUICommand {
 
+    private final Manhunt instance;
+
+    public TestGUICommand(Manhunt instance) {
+        this.instance = instance;
+    }
+
     @Execute(route = "main")
     void mainGUITest(Player player) {
-        MainGUI mainGUI = new MainGUI();
+        MainGUI mainGUI = new MainGUI(instance);
         mainGUI.guiCreation().show(player);
     }
 
     @Execute(route = "start")
     void startGUITest(Player player) {
-        StartManhuntGUI startManhuntGUI = new StartManhuntGUI();
+        StartManhuntGUI startManhuntGUI = new StartManhuntGUI(instance);
         startManhuntGUI.guiCreation().show(player);
     }
 

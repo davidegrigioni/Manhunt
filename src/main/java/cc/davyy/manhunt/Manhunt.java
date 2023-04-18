@@ -48,7 +48,7 @@ public final class Manhunt extends JavaPlugin {
                 .commandInstance(
                         new ManhuntCommand(this),
                         new TeleportWorldCommand(this),
-                        new TestGUICommand())
+                        new TestGUICommand(this))
                 .contextualBind(Player.class, new BukkitOnlyPlayerContextual<>("This command is only available for players!"))
                 .argument(World.class, new WorldArgument(this))
                 .argument(Player.class, new PlayerArgument(this))

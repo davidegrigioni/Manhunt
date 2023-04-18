@@ -28,13 +28,16 @@ public class CreateWorld {
             if (world != null) {
                 Bukkit.getLogger().info("Successfully created vanilla " + environment.name() + " world: " + worldName);
                 player.sendMessage(Component.text("Successfully created vanilla " + environment.name() + " world: " + worldName));
+                System.out.println(world);
             } else {
                 Bukkit.getLogger().severe("Failed to create vanilla " + environment.name() + " world: " + worldName);
                 player.sendMessage(Component.text("Failed to create vanilla " + environment.name() + " world: " + worldName));
+                System.out.println(world);
             }
         } else {
             Bukkit.getLogger().info("World already exists: " + worldName);
             player.sendMessage(Component.text("World already exists: " + worldName));
+            System.out.println(world);
         }
     }
 

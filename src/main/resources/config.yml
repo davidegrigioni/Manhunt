@@ -1,6 +1,18 @@
+# Main Config for the Manhunt plugin developed by davy.
+# Please for support contact me on Github Issues (for now)
+
+# FUTURE PLANS:
+# GUI Editor (Enable the chance to completely modify the gui as you want)
+# ??? (If you have an idea open a github issue!)
+
 # Config File Version, DO NOT TOUCH!
 file-version: 1
+
 # Runners
 runners:
   -
+
+# Developer Mode, enables /testgui for testing and modify the guis.
+# default: false.
+developer-mode: false
 
