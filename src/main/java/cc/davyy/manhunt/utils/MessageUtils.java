@@ -11,6 +11,7 @@ public enum MessageUtils {
     PLAYER_NOT_FOUND_MESSAGE("player-not-found-message"),
     START_MANHUNT_GUI_TITLE("start-manhunt-gui-title"),
     MAIN_GUI_TITLE("main-gui-title"),
+    SETTINGS_GUI_TITLE("settings-gui-title"),
     NO_WORLD_FOUND_MESSAGE("no-world-message");
 
     private final String message;

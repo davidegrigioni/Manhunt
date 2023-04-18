@@ -4,6 +4,7 @@ import cc.davyy.manhunt.Manhunt;
 import cc.davyy.manhunt.utils.ColorUtils;
 import cc.davyy.manhunt.utils.MessageUtils;
 import cc.davyy.manhunt.worlds.CreateWorld;
+import com.github.stefvanschie.inventoryframework.adventuresupport.ComponentHolder;
 import com.github.stefvanschie.inventoryframework.adventuresupport.TextHolder;
 import com.github.stefvanschie.inventoryframework.gui.GuiItem;
 import com.github.stefvanschie.inventoryframework.gui.type.ChestGui;
@@ -27,7 +28,7 @@ public class StartManhuntGUI {
 
         String startManhuntTitleGUI = instance.getMessages().getString(MessageUtils.START_MANHUNT_GUI_TITLE.getMessage());
 
-        ChestGui gui = new ChestGui(3, (TextHolder) ColorUtils.colorize(startManhuntTitleGUI));
+        ChestGui gui = new ChestGui(3, ComponentHolder.of(ColorUtils.colorize(startManhuntTitleGUI)));
 
         gui.setOnGlobalClick(event -> event.setCancelled(true));
 

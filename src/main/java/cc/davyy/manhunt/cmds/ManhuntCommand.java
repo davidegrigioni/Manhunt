@@ -33,7 +33,7 @@ public class ManhuntCommand {
 
     // Adds Runner into Runner list
     @Async
-    @Execute(route = "addrunner", aliases = "ar")
+    @Execute(route = "addrunner", aliases = {"ar", "add"})
     @Permission("manhunt.addrunner")
     void runnerAdd(Player player, @Arg Player target) throws IOException {
 
@@ -69,16 +69,17 @@ public class ManhuntCommand {
     }
 
     @Async
-    @Execute(route = "deleterunner", aliases = "dr")
+    @Execute(route = "deleterunner", aliases = {"removerunner", "rm"})
     @Permission("manhunt.deleterunner")
-    void runnerDelete(Player player, @Arg Player target) {
+    void runnerDelete(Player player, @Arg Player target) throws IOException {
         List<String> runnersList = instance.getConfiguration().getStringList("runners");
         if (!runnersList.contains(target.getName())) {
             String message = instance.getMessages().getString(MessageUtils.RUNNERS_NOT_IN_LIST_MESSAGE.getMessage());
             player.sendMessage(ColorUtils.colorize(message));
         } else {
-            runnersList.remove(player.getName());
-            instance.getConfiguration().remove(target.getName());
+            runnersList.remove(target.getName());
+            instance.getConfiguration().set("runners", runnersList);
+            instance.getConfiguration().save();
             String message = instance.getMessages().getString(MessageUtils.RUNNER_REMOVED_MESSAGE.getMessage());
             player.sendMessage(ColorUtils.colorize(target.getName() + " " + message));
         }

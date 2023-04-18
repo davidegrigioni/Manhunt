@@ -1,5 +1,9 @@
 package cc.davyy.manhunt.guis;
 
+import cc.davyy.manhunt.Manhunt;
+import cc.davyy.manhunt.utils.ColorUtils;
+import cc.davyy.manhunt.utils.MessageUtils;
+import com.github.stefvanschie.inventoryframework.adventuresupport.ComponentHolder;
 import com.github.stefvanschie.inventoryframework.gui.GuiItem;
 import com.github.stefvanschie.inventoryframework.gui.type.ChestGui;
 import com.github.stefvanschie.inventoryframework.pane.OutlinePane;
@@ -14,9 +18,17 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 public class SettingsGUI {
 
+    private final Manhunt instance;
+
+    public SettingsGUI(Manhunt instance) {
+        this.instance = instance;
+    }
+
     public ChestGui guiCreation() {
 
-        ChestGui gui = new ChestGui(3, "Settings");
+        String settingsGUITitle = instance.getMessages().getString(MessageUtils.SETTINGS_GUI_TITLE.getMessage());
+
+        ChestGui gui = new ChestGui(3, ComponentHolder.of(ColorUtils.colorize(settingsGUITitle)));
 
         gui.setOnGlobalClick(event -> event.setCancelled(true));
 

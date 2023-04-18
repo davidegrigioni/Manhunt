@@ -33,7 +33,7 @@ public class TestGUICommand {
 
     @Execute(route = "settings")
     void settingsGUITest(Player player) {
-        SettingsGUI settingsGUI = new SettingsGUI();
+        SettingsGUI settingsGUI = new SettingsGUI(instance);
         settingsGUI.guiCreation().show(player);
     }
 
