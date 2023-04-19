@@ -3,3 +3,4 @@ version: '${project.version}'
 main: cc.davyy.manhunt.Manhunt
 api-version: 1.19
 authors: [davideenoo]
+softdepend: [PlaceholderAPI]

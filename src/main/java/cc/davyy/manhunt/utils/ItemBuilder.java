@@ -272,7 +272,7 @@ public class ItemBuilder {
      * @param flags The flag to hide
      * @return The ItemBuilder
      */
-    public ItemBuilder hideFlag(ItemFlag @NotNull ... flags) {
+    public ItemBuilder hideFlag(ItemFlag ... flags) {
         this.flags.addAll(Arrays.asList(flags));
         meta.addItemFlags(flags);
         item.setItemMeta(meta);
@@ -294,7 +294,7 @@ public class ItemBuilder {
      * @param flags The flag to show
      * @return The ItemBuilder
      */
-    public ItemBuilder showFlag(ItemFlag @NotNull ... flags) {
+    public ItemBuilder showFlag(ItemFlag ... flags) {
         Arrays.asList(flags).forEach(this.flags::remove);
         meta.removeItemFlags(flags);
         item.setItemMeta(meta);
@@ -374,7 +374,7 @@ public class ItemBuilder {
      * @param levels The levels of enchantments to remove
      * @return The ItemBuilder
      */
-    public ItemBuilder removeEnchantments(int @NotNull ... levels) {
+    public ItemBuilder removeEnchantments(int ... levels) {
         enchantments.forEach((key, value) -> Arrays.stream(levels).filter(l -> value == l).forEach(l -> {
             enchantments.remove(key);
             meta.removeEnchant(key);

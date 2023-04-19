@@ -4,6 +4,7 @@ file-version: 1
 teleport-world-message: "<green>You have been teleported to</green>"
 no-world-message: "<red>No World has been found or you typed wrong.</red>"
 player-not-found-message: "<red>Player not found</red>"
+config-reload-message: "<green>Config Reloaded</green>"
 # Runners Messages
 runners-already-in-list-message: "<red>This player is already in the runners list.</red>"
 runner-added-message: "<green>has been added into runners list</green>"

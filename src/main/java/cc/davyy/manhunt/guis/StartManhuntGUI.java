@@ -5,7 +5,6 @@ import cc.davyy.manhunt.utils.ColorUtils;
 import cc.davyy.manhunt.utils.MessageUtils;
 import cc.davyy.manhunt.worlds.CreateWorld;
 import com.github.stefvanschie.inventoryframework.adventuresupport.ComponentHolder;
-import com.github.stefvanschie.inventoryframework.adventuresupport.TextHolder;
 import com.github.stefvanschie.inventoryframework.gui.GuiItem;
 import com.github.stefvanschie.inventoryframework.gui.type.ChestGui;
 import com.github.stefvanschie.inventoryframework.pane.OutlinePane;

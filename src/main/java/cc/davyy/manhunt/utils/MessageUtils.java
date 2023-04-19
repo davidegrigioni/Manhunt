@@ -8,6 +8,7 @@ public enum MessageUtils {
     RUNNERS_LIST_MESSAGE("runners-list-message"),
     RUNNERS_NOT_IN_LIST_MESSAGE("runner-not-in-list-message"),
     RUNNER_REMOVED_MESSAGE("runner-removed-message"),
+    CONFIG_RELOADED_MESSAGE("config-reload-message"),
     PLAYER_NOT_FOUND_MESSAGE("player-not-found-message"),
     START_MANHUNT_GUI_TITLE("start-manhunt-gui-title"),
     MAIN_GUI_TITLE("main-gui-title"),

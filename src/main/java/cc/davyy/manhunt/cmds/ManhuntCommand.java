@@ -2,6 +2,7 @@ package cc.davyy.manhunt.cmds;
 
 import cc.davyy.manhunt.Manhunt;
 import cc.davyy.manhunt.guis.MainGUI;
+import cc.davyy.manhunt.managers.ConfigManager;
 import cc.davyy.manhunt.utils.ColorUtils;
 import cc.davyy.manhunt.utils.MessageUtils;
 import dev.rollczi.litecommands.argument.Arg;
@@ -16,6 +17,7 @@ import org.bukkit.entity.Player;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.logging.Level;
 
 @Route(name = "manhunt", aliases = "mh")
 public class ManhuntCommand {
@@ -90,6 +92,19 @@ public class ManhuntCommand {
     void gui(Player player) {
         MainGUI mainGUI = new MainGUI(instance);
         mainGUI.guiCreation().show(player);
+    }
+
+    @Execute(route = "reload")
+    @Permission("manhunt.reload")
+    void reload(Player player) {
+        try {
+            instance.getConfiguration().reload();
+            instance.getMessages().reload();
+            String message = instance.getMessages().getString(MessageUtils.CONFIG_RELOADED_MESSAGE.getMessage());
+            player.sendMessage(ColorUtils.colorize(message));
+        } catch (IOException ex) {
+            instance.getLogger().log(Level.SEVERE, "An error occurred whilst loading the config!", ex);
+        }
     }
 
 }

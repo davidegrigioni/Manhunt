@@ -4,6 +4,7 @@ import cc.davyy.manhunt.cmds.ManhuntCommand;
 import cc.davyy.manhunt.cmds.TeleportWorldCommand;
 import cc.davyy.manhunt.cmds.TestGUICommand;
 import cc.davyy.manhunt.listeners.PlayerJoinListener;
+import cc.davyy.manhunt.placeholders.ManhuntExpansion;
 import cc.davyy.manhunt.utils.PlayerArgument;
 import cc.davyy.manhunt.worlds.WorldArgument;
 import dev.dejvokep.boostedyaml.YamlDocument;
@@ -15,6 +16,7 @@ import dev.dejvokep.boostedyaml.settings.updater.UpdaterSettings;
 import dev.rollczi.litecommands.LiteCommands;
 import dev.rollczi.litecommands.bukkit.LiteBukkitFactory;
 import dev.rollczi.litecommands.bukkit.tools.BukkitOnlyPlayerContextual;
+import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -35,6 +37,10 @@ public final class Manhunt extends JavaPlugin {
         registerCommands();
         registerConfig();
         registerListeners();
+
+        if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
+            registerPlaceholders();
+        }
 
     }
 
@@ -73,7 +79,11 @@ public final class Manhunt extends JavaPlugin {
     }
 
     private void registerListeners() {
-        getServer().getPluginManager().registerEvents(new PlayerJoinListener(this), this);
+        getServer().getPluginManager().registerEvents(new PlayerJoinListener(), this);
+    }
+
+    private void registerPlaceholders() {
+        new ManhuntExpansion(this).register();
     }
 
     @NotNull

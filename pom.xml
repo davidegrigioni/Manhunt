@@ -75,6 +75,14 @@
             <id>panda-repository</id>
             <url>https://repo.panda-lang.org/releases</url>
         </repository>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+        <repository>
+            <id>placeholderapi</id>
+            <url>https://repo.extendedclip.com/content/repositories/placeholderapi/</url>
+        </repository>
     </repositories>
 
     <dependencies>
@@ -100,9 +108,16 @@
             <version>0.10.9</version>
         </dependency>
         <dependency>
-            <groupId>fr.mrmicky</groupId>
-            <artifactId>fastboard</artifactId>
-            <version>1.2.1</version>
+            <groupId>com.github.ShieldCommunity</groupId>
+            <artifactId>SternalBoard</artifactId>
+            <version>2.2.0</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>me.clip</groupId>
+            <artifactId>placeholderapi</artifactId>
+            <version>2.11.3</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 </project>

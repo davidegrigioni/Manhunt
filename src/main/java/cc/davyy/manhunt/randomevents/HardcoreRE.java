@@ -26,11 +26,8 @@ public class HardcoreRE implements Listener {
         BukkitScheduler scheduler = Bukkit.getScheduler();
 
         if (!world.getName().equalsIgnoreCase("lobby")) {
-            scheduler.runTaskTimer(instance, () -> {
-                player.setHealth(3.0);
-            }, 0, 18000);
+            scheduler.runTaskTimer(instance, () -> player.setHealth(3.0), 0, 18000);
         }
-
     }
 
 }
