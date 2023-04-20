@@ -1,15 +1,25 @@
-<h1>Manhunt</h1>
+# Manhunt   
 
-Welcome to Manhunt, the ultimate minigame plugin for your server! Designed to provide the best possible Manhunt experience, this plugin is packed with features that set it apart from the competition.
+This aims to be the best available Manhunt plugin on the market.<br>
+Me and a friend of mine saw that many of the Manhunt plugins available on Spigot and here on GitHub are not really the best and only offer few to no features.<br>
+We saw the only plugin available that is "good" is not for free.<br>
+As I want to learn how to do Minigames in the best way possible here is my solution. hope you like it!
 
-With our easy-to-use GUIs powered by InventoryFramework, you'll be able to create custom interfaces that are fully customizable and lightning fast. And with WorldCreator integrated into the plugin, you won't need any additional software to generate the perfect Manhunt world.
-
-Our plugin comes with a variety of settings that allow you to customize your gameplay experience, including the ability to choose between Delphin and Hardcore Random Events. And with fully configurable scoreboards, you can keep track of all the important details without missing a beat.
-
-But that's not all – we also support MiniMessage, which means you can take your text formatting to the next level with advanced features that go beyond traditional ChatColor libraries.
-
-In addition to our core features, we use a variety of powerful libraries to ensure the best possible experience for our users. These include LiteCommands for easy command management, bStats for detailed usage tracking, PlaceholderAPI for versatile placeholder functionality, BoostedYAML for smooth configuration management, and SternalBoard for advanced scoreboard functionality.
-
-But we're always looking for ways to improve our plugin, and we welcome your feedback and suggestions. Whether you have a feature request or just want to say hi, please feel free to contact us on Spigot or open a GitHub Issue. And who knows – if we see enough engagement, we might even create a Discord server for our dedicated Manhunt community!
-
+FEATURES:<br>
+  GUIs = Thanks to InventoryFramework I don't have to work much on GUIs, they should be fast 100% customizable.<br>
+  WorldCreator integrated = You shouldn't download any other plugin to generate the Manhunt world!<br>
+  Settings = You can only make a few settings for now but in the future we're going to add more!<br>
+  Random Events = Choose between Delphin and Hardcore Random Events! In the future we're going to add alot more =).<br>
+  Configurable Scoreboards = All scoreboard are fully configurable, the only problem is for now Scoreboards doesn't support MiniMessage!<br>
+  MiniMessage Support = We aimed to support MiniMessage as you can do more things that the normal ChatColor library.<br>
+  Your feature? Please open a GitHub Issue or contact me on Spigot! If I'll see much interaction with this plugin I'll create a Discord server!
+  
+LIBRARIES USED:<br>
+  InventoryFramework for the GUIs,<br>
+  LiteCommands for the Commands,<br>
+  bStats to track the use of this plugin,<br>
+  PlaceholderAPI for the placeholders,<br>
+  BoostedYAML for the configs,<br>
+  SternalBoard for the Scoreboards.
+  
 <h1>IMAGES</h1>
