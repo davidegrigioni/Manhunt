@@ -1,5 +1,4 @@
 # Manhunt   
-
 This aims to be the best available Manhunt plugin on the market.<br>
 Me and a friend of mine saw that many of the Manhunt plugins available on Spigot and here on GitHub are not really the best and only offer few to no features.<br>
 We saw the only plugin available that is "good" is not for free.<br>
