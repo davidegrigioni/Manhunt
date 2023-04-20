@@ -1,13 +1,15 @@
 # FILE VERSION DO NOT TOUCH!
 file-version: 1
 # Messages, Uses MiniMessage Format.
+# PLUGIN PREFIX
+prefix: "<green>[Manhunt]</green>"
 teleport-world-message: "<green>You have been teleported to</green>"
 no-world-message: "<red>No World has been found or you typed wrong.</red>"
-player-not-found-message: "<red>Player not found</red>"
-config-reload-message: "<green>Config Reloaded</green>"
+player-not-found-message: "<red>Player not found.</red>"
+config-reload-message: "<green>Config and Messages reloaded</green>"
 # Runners Messages
 runners-already-in-list-message: "<red>This player is already in the runners list.</red>"
-runner-added-message: "<green>has been added into runners list</green>"
+runner-added-message: "<green>has been added into runners list.</green>"
 runners-list-message: "<green>Runners list: </green>"
 runner-not-in-list-message: "<red>This player is not in the runners list.</red>"
 runner-removed-message: "<green>has been removed from the runners list.</green>"

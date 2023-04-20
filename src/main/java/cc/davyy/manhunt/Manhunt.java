@@ -5,8 +5,9 @@ import cc.davyy.manhunt.cmds.TeleportWorldCommand;
 import cc.davyy.manhunt.cmds.TestGUICommand;
 import cc.davyy.manhunt.listeners.PlayerJoinListener;
 import cc.davyy.manhunt.placeholders.ManhuntExpansion;
-import cc.davyy.manhunt.utils.PlayerArgument;
-import cc.davyy.manhunt.worlds.WorldArgument;
+import cc.davyy.manhunt.utils.InvalidUsage;
+import cc.davyy.manhunt.arguments.PlayerArgument;
+import cc.davyy.manhunt.arguments.WorldArgument;
 import dev.dejvokep.boostedyaml.YamlDocument;
 import dev.dejvokep.boostedyaml.dvs.versioning.BasicVersioning;
 import dev.dejvokep.boostedyaml.settings.dumper.DumperSettings;
@@ -58,6 +59,7 @@ public final class Manhunt extends JavaPlugin {
                 .contextualBind(Player.class, new BukkitOnlyPlayerContextual<>("This command is only available for players!"))
                 .argument(World.class, new WorldArgument(this))
                 .argument(Player.class, new PlayerArgument(this))
+                .invalidUsageHandler(new InvalidUsage())
                 .register();
     }
 
@@ -79,7 +81,7 @@ public final class Manhunt extends JavaPlugin {
     }
 
     private void registerListeners() {
-        getServer().getPluginManager().registerEvents(new PlayerJoinListener(), this);
+        getServer().getPluginManager().registerEvents(new PlayerJoinListener(this), this);
     }
 
     private void registerPlaceholders() {

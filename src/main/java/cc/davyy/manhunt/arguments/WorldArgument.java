@@ -1,4 +1,4 @@
-package cc.davyy.manhunt.worlds;
+package cc.davyy.manhunt.arguments;
 
 import cc.davyy.manhunt.Manhunt;
 import dev.rollczi.litecommands.argument.ArgumentName;

@@ -9,12 +9,16 @@ file-version: 1
 # Runners
 runners: []
 
-# Developer Mode, enables /testgui for testing and modify the guis.
-# default: false.
-developer-mode: false
-
-# Scoreboard
-scoreboard:
-  title: "&4Manhunt"
+# Scoreboards
+waiting-scoreboard:
+  title: "&4Manhunt - WAITING"
   lines: []
+
+game-scoreboard:
+  title: "&4Manhunt - BY DAVIDEENOO"
+  lines: []
+
+# LOBBY, AS I STILL DON'T KNOW A BETTER METHOD (IF YOU KNOW PLEASE TELL ME)
+# FOR NOT HAVING PROBLEMS WITH SCOREBOARD SET THIS TO YOUR LOBBY-NAME (CASE SENSITIVE)
+lobby-world: "world"
 
