@@ -4,6 +4,7 @@ import cc.davyy.manhunt.cmds.ManhuntCommand;
 import cc.davyy.manhunt.cmds.TeleportWorldCommand;
 import cc.davyy.manhunt.cmds.TestGUICommand;
 import cc.davyy.manhunt.listeners.PlayerJoinListener;
+import cc.davyy.manhunt.listeners.SpectatorListener;
 import cc.davyy.manhunt.placeholders.ManhuntExpansion;
 import cc.davyy.manhunt.utils.InvalidUsage;
 import cc.davyy.manhunt.arguments.PlayerArgument;
@@ -82,6 +83,7 @@ public final class Manhunt extends JavaPlugin {
 
     private void registerListeners() {
         getServer().getPluginManager().registerEvents(new PlayerJoinListener(this), this);
+        getServer().getPluginManager().registerEvents(new SpectatorListener(this), this);
     }
 
     private void registerPlaceholders() {

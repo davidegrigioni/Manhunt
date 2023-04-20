@@ -8,6 +8,7 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.ItemStack;
 
@@ -23,43 +24,52 @@ public class PlayerJoinListener implements Listener {
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
-        Player player = event.getPlayer();
+        final Player player = event.getPlayer();
+        waitingScoreboard = new WaitingScoreboard(instance);
+
+        waitingScoreboard.setWaitingScoreboard(player);
+    }
+
+    @EventHandler
+    public void onWorldChange(PlayerChangedWorldEvent event) {
+        final Player player = event.getPlayer();
         waitingScoreboard = new WaitingScoreboard(instance);
         gameScoreboard = new GameScoreboard(instance);
         String lobbyWorld = instance.getConfiguration().getString("lobby-world");
 
-        if (!(player.getWorld().getName().equals(lobbyWorld))) {
+        if (!player.getWorld().getName().equals(lobbyWorld)) {
             gameScoreboard.setGameScoreboard(player);
-        } else {
-            gameScoreboard.removeGameScoreboard(player);
-        }
-
-        if (player.getWorld().getName().equals(lobbyWorld)) {
-            setItemJoin(player);
-            waitingScoreboard.setWaitingScoreboard(player);
-        } else {
-            removeItemJoin(player);
             waitingScoreboard.removeWaitingScoreboard(player);
+            gameItems(player);
+        } else {
+            waitingScoreboard.setWaitingScoreboard(player);
+            gameScoreboard.removeGameScoreboard(player);
+            removeItems(player);
         }
 
     }
 
     private void setItemJoin(Player player) {
 
-        ItemStack compass = new ItemBuilder(Material.CHEST, 1)
+        ItemStack chest = new ItemBuilder(Material.CHEST, 1)
                 .displayName("GUI")
                 .lore("Click to start")
                 .build();
 
-        player.getInventory().setItem(4, compass);
+        player.getInventory().setItem(4, chest);
 
     }
 
-    private void removeItemJoin(Player player) {
+    private void removeItems(Player player) {
         player.getInventory().clear();
     }
 
-    private void gameItems() {
+    private void gameItems(Player player) {
+
+        ItemStack compass = new ItemBuilder(Material.COMPASS, 1)
+                .displayName("Compass")
+                .lore("Use this to track runners")
+                .build();
 
     }
 

@@ -8,8 +8,11 @@ import com.github.stefvanschie.inventoryframework.gui.GuiItem;
 import com.github.stefvanschie.inventoryframework.gui.type.ChestGui;
 import com.github.stefvanschie.inventoryframework.pane.OutlinePane;
 import com.github.stefvanschie.inventoryframework.pane.Pane;
+import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 public class MainGUI {
 
@@ -34,6 +37,29 @@ public class MainGUI {
         gui.addPane(background);
 
         OutlinePane navigationPane = new OutlinePane(3, 1, 3, 1);
+
+        ItemStack settingsMenu = new ItemStack(Material.COMPARATOR);
+        ItemMeta settingsMenuMeta = settingsMenu.getItemMeta();
+        String settingsTitle = instance.getMessages().getString(MessageUtils.SETTINGS_GUI_TITLE.getMessage());
+        settingsMenuMeta.displayName(ColorUtils.colorize(settingsTitle));
+        settingsMenu.setItemMeta(settingsMenuMeta);
+
+        navigationPane.addItem(new GuiItem(settingsMenu, event -> {
+            final Player player = (Player) event.getWhoClicked();
+            SettingsGUI settingsGUI = new SettingsGUI(instance);
+            settingsGUI.guiCreation().show(player);
+        }));
+
+        ItemStack startMenu = new ItemStack(Material.COMPASS);
+        ItemMeta startMenuMeta = startMenu.getItemMeta();
+        startMenuMeta.displayName(Component.text("Start"));
+        startMenu.setItemMeta(startMenuMeta);
+
+        navigationPane.addItem(new GuiItem(startMenu, event -> {
+            final Player player = (Player) event.getWhoClicked();
+            StartManhuntGUI startManhuntGUI = new StartManhuntGUI(instance);
+            startManhuntGUI.guiCreation().show(player);
+        }));
 
         gui.addPane(navigationPane);
 

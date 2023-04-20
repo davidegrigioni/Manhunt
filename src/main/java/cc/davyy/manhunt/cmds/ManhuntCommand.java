@@ -46,7 +46,7 @@ public class ManhuntCommand {
 
     // Adds Runner into Runner list
     @Async
-    @Execute(route = "addrunner", aliases = {"ar", "add"})
+    @Execute(route = "addrunner")
     @Permission("manhunt.addrunner")
     void runnerAdd(Player player, @Arg Player target) throws IOException {
 
@@ -72,7 +72,7 @@ public class ManhuntCommand {
 
     // Returns runners list
     @Async
-    @Execute(route = "listrunners", aliases = {"lr", "list"})
+    @Execute(route = "listrunners")
     @Permission("manhunt.listrunners")
     void runnersList(Player player) {
         List<String> runnersList = instance.getConfiguration().getStringList("runners");
@@ -82,7 +82,7 @@ public class ManhuntCommand {
     }
 
     @Async
-    @Execute(route = "deleterunner", aliases = {"removerunner", "rm", "remove"})
+    @Execute(route = "removerunner")
     @Permission("manhunt.deleterunner")
     void runnerDelete(Player player, @Arg Player target) throws IOException {
         List<String> runnersList = instance.getConfiguration().getStringList("runners");
@@ -105,6 +105,7 @@ public class ManhuntCommand {
         mainGUI.guiCreation().show(player);
     }
 
+    @Async
     @Execute(route = "reload")
     @Permission("manhunt.reload")
     void reload(Player player) {

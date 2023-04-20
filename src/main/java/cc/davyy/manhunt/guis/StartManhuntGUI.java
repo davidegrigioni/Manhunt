@@ -41,7 +41,8 @@ public class StartManhuntGUI {
 
         ItemStack back = new ItemStack(Material.BARRIER);
         ItemMeta backMeta = back.getItemMeta();
-        backMeta.displayName(Component.text("Back"));
+        String backTitle = instance.getMessages().getString(MessageUtils.BACK_MESSAGE.getMessage());
+        backMeta.displayName(ColorUtils.colorize(backTitle));
         back.setItemMeta(backMeta);
 
         // Back to the default page

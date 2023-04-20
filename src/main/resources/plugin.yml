@@ -3,4 +3,8 @@ version: '${project.version}'
 main: cc.davyy.manhunt.Manhunt
 api-version: 1.19
 authors: [davideenoo]
+description: The best free Manhunt plugin available
 softdepend: [PlaceholderAPI]
+prefix: Manhunt
+website: https://github.com/davidegrigioni/Manhunt
+

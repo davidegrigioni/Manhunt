@@ -9,6 +9,7 @@ import com.github.stefvanschie.inventoryframework.gui.type.ChestGui;
 import com.github.stefvanschie.inventoryframework.pane.OutlinePane;
 import com.github.stefvanschie.inventoryframework.pane.Pane;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.Bukkit;
 import org.bukkit.GameRule;
 import org.bukkit.Material;
@@ -42,7 +43,8 @@ public class SettingsGUI {
 
         ItemStack doDayCycle = new ItemStack(Material.TORCH);
         ItemMeta doDayCycleMeta = doDayCycle.getItemMeta();
-        doDayCycleMeta.displayName(Component.text("Do Daylight Cycle"));
+        String doDayCycleTitle = instance.getMessages().getString(MessageUtils.DO_DAYLIGHT_CYCLE_MESSAGE.getMessage());
+        doDayCycleMeta.displayName(ColorUtils.colorize(doDayCycleTitle));
         doDayCycle.setItemMeta(doDayCycleMeta);
 
         navigationPane.addItem(new GuiItem(doDayCycle, event -> {
@@ -52,11 +54,24 @@ public class SettingsGUI {
                 boolean currentValue = player.getWorld().getGameRuleValue(rule);
                 player.getWorld().setGameRule(rule, !currentValue);
                 String status = currentValue ? "disabled" : "enabled";
-                player.sendMessage(Component.text("Do Daylight Cycle " + status));
+                player.sendMessage(Component.text("Do Daylight Cycle " + status, NamedTextColor.GREEN));
             } catch (NullPointerException e) {
                 Bukkit.getLogger().severe("Failed to toggle Do Daylight Cycle: " + e.getMessage());
-                player.sendMessage(Component.text("Failed to toggle Do Daylight Cycle: " + e.getMessage()));
+                player.sendMessage(Component.text("Failed to toggle Do Daylight Cycle: " + e.getMessage(), NamedTextColor.RED));
             }
+        }));
+
+        ItemStack back = new ItemStack(Material.BARRIER);
+        ItemMeta backMeta = back.getItemMeta();
+        String backTitle = instance.getMessages().getString(MessageUtils.BACK_MESSAGE.getMessage());
+        backMeta.displayName(ColorUtils.colorize(backTitle));
+        back.setItemMeta(backMeta);
+
+        // Back to the default page
+        navigationPane.addItem(new GuiItem(back, event -> {
+            final Player player = (Player) event.getWhoClicked();
+            MainGUI mainGUI = new MainGUI(instance);
+            mainGUI.guiCreation().show(player);
         }));
 
         ItemStack doWeatherCycle = new ItemStack(Material.CLOCK);
@@ -71,10 +86,10 @@ public class SettingsGUI {
                 boolean currentValue = player.getWorld().getGameRuleValue(rule);
                 player.getWorld().setGameRule(rule, !currentValue);
                 String status = currentValue ? "disabled" : "enabled";
-                player.sendMessage(Component.text("Do Weather Cycle " + status));
+                player.sendMessage(Component.text("Do Weather Cycle " + status, NamedTextColor.RED));
             } catch (NullPointerException e) {
                 Bukkit.getLogger().severe("Failed to toggle Do Weather Cycle: " + e.getMessage());
-                player.sendMessage(Component.text("Failed to toggle Do Weather Cycle: " + e.getMessage()));
+                player.sendMessage(Component.text("Failed to toggle Do Weather Cycle: " + e.getMessage(), NamedTextColor.RED));
             }
         }));
 
