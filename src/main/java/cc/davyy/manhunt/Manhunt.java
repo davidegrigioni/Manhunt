@@ -18,6 +18,7 @@ import dev.dejvokep.boostedyaml.settings.updater.UpdaterSettings;
 import dev.rollczi.litecommands.LiteCommands;
 import dev.rollczi.litecommands.bukkit.LiteBukkitFactory;
 import dev.rollczi.litecommands.bukkit.tools.BukkitOnlyPlayerContextual;
+import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.command.CommandSender;
@@ -39,6 +40,7 @@ public final class Manhunt extends JavaPlugin {
         registerCommands();
         registerConfig();
         registerListeners();
+        registerBStats();
 
         if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
             registerPlaceholders();
@@ -48,7 +50,7 @@ public final class Manhunt extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        // Plugin shutdown logic
+
     }
 
     private void registerCommands() {
@@ -88,6 +90,10 @@ public final class Manhunt extends JavaPlugin {
 
     private void registerPlaceholders() {
         new ManhuntExpansion(this).register();
+    }
+    private void registerBStats() {
+        int pluginId = 18248;
+        Metrics metrics = new Metrics(this, pluginId);
     }
 
     @NotNull

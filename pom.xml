@@ -42,11 +42,19 @@
                             <relocations>
                                 <relocation>
                                     <pattern>fr.mrmicky.fastboard</pattern>
-                                    <shadedPattern>cc.davyy.manhunt</shadedPattern>
+                                    <shadedPattern>cc.davyy.manhunt.fastboard</shadedPattern>
+                                </relocation>
+                                <relocation>
                                     <pattern>dev.dejvokep.boostedyaml</pattern>
-                                    <shadedPattern>cc.davyy.manhunt</shadedPattern>
+                                    <shadedPattern>cc.davyy.manhunt.boostedyaml</shadedPattern>
+                                </relocation>
+                                <relocation>
                                     <pattern>com.github.stefvanschie.inventoryframework</pattern>
                                     <shadedPattern>cc.davyy.manhunt.inventoryframework</shadedPattern>
+                                </relocation>
+                                <relocation>
+                                    <pattern>org.bstats</pattern>
+                                    <shadedPattern>cc.davyy.manhunt.bstats</shadedPattern>
                                 </relocation>
                             </relocations>
                         </configuration>
@@ -118,6 +126,12 @@
             <artifactId>placeholderapi</artifactId>
             <version>2.11.3</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.bstats</groupId>
+            <artifactId>bstats-bukkit</artifactId>
+            <version>3.0.2</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 </project>

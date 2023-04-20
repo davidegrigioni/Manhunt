@@ -14,9 +14,9 @@ public class CreateWorld {
     public void createPlayerWorlds(Player player) {
         String playerName = player.getName();
         UUID uuid = UUID.randomUUID();
-        String overworldName = "manhunt-" + playerName + "-overworld-" + uuid;
-        String netherName = "manhunt-" + playerName + "-nether-" + uuid;
-        String endName = "manhunt-" + playerName + "-end-" + uuid;
+        String overworldName = "manhunt-" + playerName + "-overworld";
+        String netherName = "manhunt-" + playerName + "-nether";
+        String endName = "manhunt-" + playerName + "-end";
 
         createVanillaWorld(player, overworldName, World.Environment.NORMAL);
         createVanillaWorld(player, netherName, World.Environment.NETHER);
@@ -36,6 +36,7 @@ public class CreateWorld {
             worldCreator.environment(environment);
             worldCreator.createWorld();
 
+            world = Bukkit.getWorld(worldName); // Check if the world was actually created
             if (world != null) {
                 Bukkit.getLogger().info("Successfully created vanilla " + environment.name() + " world: " + worldName);
                 player.sendMessage(Component.text("Successfully created vanilla " + environment.name() + " world: " + worldName, NamedTextColor.GREEN));
@@ -48,5 +49,4 @@ public class CreateWorld {
             player.sendMessage(Component.text("World already exists: " + worldName, NamedTextColor.RED));
         }
     }
-
 }
