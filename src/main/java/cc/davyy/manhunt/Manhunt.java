@@ -37,19 +37,18 @@ public final class Manhunt extends JavaPlugin {
 
     @Override
     public void onEnable() {
+
         registerCommands();
+
         registerConfig();
+
         registerListeners();
+
         registerBStats();
 
         if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
             registerPlaceholders();
         }
-
-    }
-
-    @Override
-    public void onDisable() {
 
     }
 
@@ -93,6 +92,7 @@ public final class Manhunt extends JavaPlugin {
     }
     private void registerBStats() {
         int pluginId = 18248;
+
         Metrics metrics = new Metrics(this, pluginId);
     }
 

@@ -1,7 +1,6 @@
 package cc.davyy.manhunt.listeners;
 
 import cc.davyy.manhunt.Manhunt;
-import cc.davyy.manhunt.scoreboard.GameScoreboard;
 import cc.davyy.manhunt.scoreboard.SpectatorScoreboard;
 import cc.davyy.manhunt.utils.ColorUtils;
 import cc.davyy.manhunt.utils.MessageUtils;
@@ -14,8 +13,8 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 public class SpectatorListener implements Listener {
 
     private final Manhunt instance;
+
     private SpectatorScoreboard spectatorScoreboard;
-    private GameScoreboard gameScoreboard;
 
     public SpectatorListener(Manhunt instance) {
         this.instance = instance;

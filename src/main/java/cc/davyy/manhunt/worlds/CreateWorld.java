@@ -7,13 +7,10 @@ import org.bukkit.World;
 import org.bukkit.WorldCreator;
 import org.bukkit.entity.Player;
 
-import java.util.UUID;
-
 public class CreateWorld {
 
     public void createPlayerWorlds(Player player) {
         String playerName = player.getName();
-        UUID uuid = UUID.randomUUID();
         String overworldName = "manhunt-" + playerName + "-overworld";
         String netherName = "manhunt-" + playerName + "-nether";
         String endName = "manhunt-" + playerName + "-end";

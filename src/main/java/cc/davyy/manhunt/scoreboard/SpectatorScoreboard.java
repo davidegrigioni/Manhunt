@@ -17,14 +17,14 @@ public class SpectatorScoreboard {
     }
 
     public void setSpectatorScoreboard(Player player) {
-        scoreboardManager = new ScoreboardManager(instance);
+        scoreboardManager = new ScoreboardManager();
         String spectatorScoreboardTitle = instance.getConfiguration().getString("game-scoreboard.title");
         List<String> spectatorScoreboardLines = instance.getConfiguration().getStringList("game-scoreboard.lines");
         scoreboardManager.createScoreboard(player, ColorUtils.legacy(spectatorScoreboardTitle), Collections.singletonList(ColorUtils.legacy(spectatorScoreboardLines.toString())));
     }
 
     public void removeSpectatorScoreboard(Player player) {
-        scoreboardManager = new ScoreboardManager(instance);
+        scoreboardManager = new ScoreboardManager();
         scoreboardManager.removeScoreboard(player);
     }
 }

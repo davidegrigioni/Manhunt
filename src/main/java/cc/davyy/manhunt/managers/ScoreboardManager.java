@@ -1,6 +1,5 @@
 package cc.davyy.manhunt.managers;
 
-import cc.davyy.manhunt.Manhunt;
 import cc.davyy.manhunt.utils.ColorUtils;
 import com.xism4.sternalboard.SternalBoardHandler;
 import org.bukkit.entity.Player;
@@ -12,12 +11,9 @@ import java.util.UUID;
 
 public class ScoreboardManager {
 
-
-    private final Manhunt instance;
     private final Map<UUID, SternalBoardHandler> scoreboards;
 
-    public ScoreboardManager(Manhunt instance) {
-        this.instance = instance;
+    public ScoreboardManager() {
         this.scoreboards = new HashMap<>();
     }
 

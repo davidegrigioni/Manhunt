@@ -18,14 +18,14 @@ public class GameScoreboard {
     }
 
     public void setGameScoreboard(Player player) {
-        scoreboardManager = new ScoreboardManager(instance);
+        scoreboardManager = new ScoreboardManager();
         String gameScoreboardTitle = instance.getConfiguration().getString("game-scoreboard.title");
         List<String> gameScoreboardLines = instance.getConfiguration().getStringList("game-scoreboard.lines");
         scoreboardManager.createScoreboard(player, ColorUtils.legacy(gameScoreboardTitle), Collections.singletonList(ColorUtils.legacy(gameScoreboardLines.toString())));
     }
 
     public void removeGameScoreboard(Player player) {
-        scoreboardManager = new ScoreboardManager(instance);
+        scoreboardManager = new ScoreboardManager();
         scoreboardManager.removeScoreboard(player);
     }
 

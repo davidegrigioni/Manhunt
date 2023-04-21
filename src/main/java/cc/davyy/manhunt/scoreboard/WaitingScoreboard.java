@@ -3,7 +3,6 @@ package cc.davyy.manhunt.scoreboard;
 import cc.davyy.manhunt.Manhunt;
 import cc.davyy.manhunt.managers.ScoreboardManager;
 import cc.davyy.manhunt.utils.ColorUtils;
-import dev.dejvokep.boostedyaml.block.implementation.Section;
 import org.bukkit.entity.Player;
 
 import java.util.Collections;
@@ -19,14 +18,14 @@ public class WaitingScoreboard {
     }
 
     public void setWaitingScoreboard(Player player) {
-        scoreboardManager = new ScoreboardManager(instance);
+        scoreboardManager = new ScoreboardManager();
         String waitingScoreboardTitle = instance.getConfiguration().getString("waiting-scoreboard.title");
         List<String> waitingScoreboardLines = instance.getConfiguration().getStringList("waiting-scoreboard.lines");
         scoreboardManager.createScoreboard(player, ColorUtils.legacy(waitingScoreboardTitle), Collections.singletonList(ColorUtils.legacy(waitingScoreboardLines.toString())));
     }
 
     public void removeWaitingScoreboard(Player player) {
-        scoreboardManager = new ScoreboardManager(instance);
+        scoreboardManager = new ScoreboardManager();
         scoreboardManager.removeScoreboard(player);
     }
 
