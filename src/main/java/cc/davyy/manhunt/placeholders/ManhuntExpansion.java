@@ -4,6 +4,7 @@ import cc.davyy.manhunt.Manhunt;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
+import org.bukkit.World;
 import org.jetbrains.annotations.NotNull;
 
 public class ManhuntExpansion extends PlaceholderExpansion {
@@ -55,6 +56,15 @@ public class ManhuntExpansion extends PlaceholderExpansion {
 
         if (params.equalsIgnoreCase("onlineplayers")) {
             return String.valueOf(Bukkit.getOnlinePlayers().size());
+        }
+
+        if (params.equalsIgnoreCase("player")) {
+            return player.getPlayer().getName();
+        }
+
+        if (params.equalsIgnoreCase("world")) {
+            World world = player.getPlayer().getWorld();
+            return world.getName();
         }
 
         return null; // Placeholder is unknown by the Expansion

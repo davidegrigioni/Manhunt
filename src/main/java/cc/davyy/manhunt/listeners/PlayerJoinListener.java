@@ -2,8 +2,11 @@ package cc.davyy.manhunt.listeners;
 
 import cc.davyy.manhunt.Manhunt;
 import cc.davyy.manhunt.scoreboard.GameScoreboard;
+import cc.davyy.manhunt.scoreboard.SpectatorScoreboard;
 import cc.davyy.manhunt.scoreboard.WaitingScoreboard;
+import cc.davyy.manhunt.utils.ColorUtils;
 import cc.davyy.manhunt.utils.ItemBuilder;
+import cc.davyy.manhunt.utils.MessageUtils;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -15,26 +18,36 @@ import org.bukkit.inventory.ItemStack;
 public class PlayerJoinListener implements Listener {
 
     private final Manhunt instance;
-    private WaitingScoreboard waitingScoreboard;
-    private GameScoreboard gameScoreboard;
+    private final WaitingScoreboard waitingScoreboard;
+    private final GameScoreboard gameScoreboard;
+    private final SpectatorScoreboard spectatorScoreboard;
 
     public PlayerJoinListener(Manhunt instance) {
         this.instance = instance;
+        waitingScoreboard = new WaitingScoreboard(instance);
+        gameScoreboard = new GameScoreboard(instance);
+        spectatorScoreboard = new SpectatorScoreboard(instance);
     }
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
         final Player player = event.getPlayer();
-        waitingScoreboard = new WaitingScoreboard(instance);
+        String lobbyWorld = instance.getConfiguration().getString("lobby-world");
+        boolean tabListEnabled = instance.getConfiguration().getBoolean("custom-tablist.enabled");
 
-        waitingScoreboard.setWaitingScoreboard(player);
+        if (player.getWorld().getName().equals(lobbyWorld)) {
+            waitingScoreboard.setWaitingScoreboard(player);
+        }
+
+        if (tabListEnabled) {
+            customTablist(player);
+        }
+
     }
 
     @EventHandler
     public void onWorldChange(PlayerChangedWorldEvent event) {
         final Player player = event.getPlayer();
-        waitingScoreboard = new WaitingScoreboard(instance);
-        gameScoreboard = new GameScoreboard(instance);
         String lobbyWorld = instance.getConfiguration().getString("lobby-world");
 
         if (!player.getWorld().getName().equals(lobbyWorld)) {
@@ -71,6 +84,13 @@ public class PlayerJoinListener implements Listener {
                 .lore("Use this to track runners")
                 .build();
 
+    }
+
+    private void customTablist(Player player) {
+        final String header = instance.getMessages().getString(MessageUtils.TABLIST_HEADER.getMessage());
+        final String footer = instance.getMessages().getString(MessageUtils.TABLIST_FOOTER.getMessage());
+        player.sendPlayerListHeader(ColorUtils.colorize(header));
+        player.sendPlayerListFooter(ColorUtils.colorize(footer));
     }
 
 }

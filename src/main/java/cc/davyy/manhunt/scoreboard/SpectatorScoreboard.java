@@ -2,29 +2,28 @@ package cc.davyy.manhunt.scoreboard;
 
 import cc.davyy.manhunt.Manhunt;
 import cc.davyy.manhunt.managers.ScoreboardManager;
-import cc.davyy.manhunt.utils.ColorUtils;
+import dev.dejvokep.boostedyaml.block.implementation.Section;
 import org.bukkit.entity.Player;
 
-import java.util.Collections;
 import java.util.List;
 
 public class SpectatorScoreboard {
     private final Manhunt instance;
-    private ScoreboardManager scoreboardManager;
+    private final ScoreboardManager scoreboardManager;
 
     public SpectatorScoreboard(Manhunt instance) {
         this.instance = instance;
+        scoreboardManager = new ScoreboardManager(instance);
     }
 
     public void setSpectatorScoreboard(Player player) {
-        scoreboardManager = new ScoreboardManager();
-        String spectatorScoreboardTitle = instance.getConfiguration().getString("game-scoreboard.title");
-        List<String> spectatorScoreboardLines = instance.getConfiguration().getStringList("game-scoreboard.lines");
-        scoreboardManager.createScoreboard(player, ColorUtils.legacy(spectatorScoreboardTitle), Collections.singletonList(ColorUtils.legacy(spectatorScoreboardLines.toString())));
+        Section spectatorScoreboardSection = instance.getConfiguration().getSection("spectator-scoreboard");
+        String title = spectatorScoreboardSection.getString("title");
+        List<String> lines = spectatorScoreboardSection.getStringList("lines");
+        scoreboardManager.createScoreboard(player, spectatorScoreboardSection);
     }
 
     public void removeSpectatorScoreboard(Player player) {
-        scoreboardManager = new ScoreboardManager();
         scoreboardManager.removeScoreboard(player);
     }
 }

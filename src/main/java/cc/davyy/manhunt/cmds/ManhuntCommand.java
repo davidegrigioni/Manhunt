@@ -58,7 +58,7 @@ public class ManhuntCommand {
                 instance.getConfiguration().set("runners", runnersList);
                 instance.getConfiguration().save();
                 String message = instance.getMessages().getString(MessageUtils.RUNNER_ADD_MESSAGE.getMessage());
-                player.sendMessage(ColorUtils.colorize(target.getName() + " " + message));
+                player.sendMessage(ColorUtils.colorize(message));
             } else {
                 String message = instance.getMessages().getString(MessageUtils.RUNNERS_ALREADY_IN_LIST_MESSAGE.getMessage());
                 player.sendMessage(ColorUtils.colorize(message));
@@ -94,7 +94,7 @@ public class ManhuntCommand {
             instance.getConfiguration().set("runners", runnersList);
             instance.getConfiguration().save();
             String message = instance.getMessages().getString(MessageUtils.RUNNER_REMOVED_MESSAGE.getMessage());
-            player.sendMessage(ColorUtils.colorize(target.getName() + " " + message));
+            player.sendMessage(ColorUtils.colorize(message));
         }
     }
 

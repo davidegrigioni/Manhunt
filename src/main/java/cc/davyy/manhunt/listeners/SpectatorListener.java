@@ -1,6 +1,7 @@
 package cc.davyy.manhunt.listeners;
 
 import cc.davyy.manhunt.Manhunt;
+import cc.davyy.manhunt.scoreboard.GameScoreboard;
 import cc.davyy.manhunt.scoreboard.SpectatorScoreboard;
 import cc.davyy.manhunt.utils.ColorUtils;
 import cc.davyy.manhunt.utils.MessageUtils;
@@ -14,10 +15,13 @@ public class SpectatorListener implements Listener {
 
     private final Manhunt instance;
 
-    private SpectatorScoreboard spectatorScoreboard;
+    private final SpectatorScoreboard spectatorScoreboard;
+    private final GameScoreboard gameScoreboard;
 
     public SpectatorListener(Manhunt instance) {
         this.instance = instance;
+        spectatorScoreboard = new SpectatorScoreboard(instance);
+        gameScoreboard = new GameScoreboard(instance);
     }
 
     @EventHandler
@@ -28,7 +32,7 @@ public class SpectatorListener implements Listener {
 
     private void deathMode(Player player) {
         player.setGameMode(GameMode.SPECTATOR);
-        spectatorScoreboard = new SpectatorScoreboard(instance);
+        gameScoreboard.removeGameScoreboard(player);
         spectatorScoreboard.setSpectatorScoreboard(player);
         String deathMessage = instance.getMessages().getString(MessageUtils.DEATH_MESSAGE.getMessage());
         player.sendMessage(ColorUtils.colorize(deathMessage));

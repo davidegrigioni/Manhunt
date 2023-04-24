@@ -4,8 +4,12 @@ import cc.davyy.manhunt.cmds.ManhuntCommand;
 import cc.davyy.manhunt.cmds.TeleportWorldCommand;
 import cc.davyy.manhunt.cmds.TestGUICommand;
 import cc.davyy.manhunt.listeners.PlayerJoinListener;
+import cc.davyy.manhunt.listeners.PlayerKillEntityListener;
+import cc.davyy.manhunt.listeners.PlayerTrackerListener;
 import cc.davyy.manhunt.listeners.SpectatorListener;
+import cc.davyy.manhunt.managers.ScoreboardManager;
 import cc.davyy.manhunt.placeholders.ManhuntExpansion;
+import cc.davyy.manhunt.scoreboard.WaitingScoreboard;
 import cc.davyy.manhunt.utils.InvalidUsage;
 import cc.davyy.manhunt.arguments.PlayerArgument;
 import cc.davyy.manhunt.arguments.WorldArgument;
@@ -33,7 +37,9 @@ import java.util.Objects;
 public final class Manhunt extends JavaPlugin {
 
     private LiteCommands<CommandSender> liteCommands;
-    private YamlDocument config, messages;
+    private YamlDocument config;
+    private YamlDocument messages;
+    private ScoreboardManager scoreboardManager;
 
     @Override
     public void onEnable() {
@@ -45,6 +51,8 @@ public final class Manhunt extends JavaPlugin {
         registerListeners();
 
         registerBStats();
+
+        registerManagers();
 
         if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
             registerPlaceholders();
@@ -85,15 +93,23 @@ public final class Manhunt extends JavaPlugin {
     private void registerListeners() {
         getServer().getPluginManager().registerEvents(new PlayerJoinListener(this), this);
         getServer().getPluginManager().registerEvents(new SpectatorListener(this), this);
+        getServer().getPluginManager().registerEvents(new PlayerKillEntityListener(this), this);
+        getServer().getPluginManager().registerEvents(new PlayerTrackerListener(this), this);
     }
 
     private void registerPlaceholders() {
         new ManhuntExpansion(this).register();
     }
+
     private void registerBStats() {
         int pluginId = 18248;
 
         Metrics metrics = new Metrics(this, pluginId);
+    }
+
+    private void registerManagers() {
+        scoreboardManager = new ScoreboardManager(this);
+        WaitingScoreboard waitingScoreboard = new WaitingScoreboard(this);
     }
 
     @NotNull

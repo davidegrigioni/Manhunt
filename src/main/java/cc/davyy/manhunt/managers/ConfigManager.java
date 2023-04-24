@@ -3,42 +3,37 @@ package cc.davyy.manhunt.managers;
 import cc.davyy.manhunt.Manhunt;
 import dev.dejvokep.boostedyaml.YamlDocument;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class ConfigManager {
 
-    private final Manhunt instance;
-    private List<String> runners;
+    private static YamlDocument config;
 
-    public ConfigManager(Manhunt instance) {
-        this.instance = instance;
+    public static void setConfig(Manhunt instance) {
+        ConfigManager.config = instance.getConfiguration();
+        instance.saveDefaultConfig();
     }
 
-    public void load() {
-        runners = new ArrayList<>();
-        YamlDocument config = instance.getConfiguration();
-        runners.addAll(config.getStringList("runners"));
+    public static int getMinRequiredPlayers() {
+        return config.getInt("min-required-players");
     }
 
-    public void add(String value) {
-        runners.add(value);
+    public static int getMaxRequiredPlayers() {
+        return config.getInt("max-required-players");
     }
 
-    public void remove(String value) {
-        runners.remove(value);
+    public static int getMinRequiredHunters() {
+        return config.getInt("min-required-hunters");
     }
 
-    public void save() {
-        YamlDocument config = instance.getConfiguration();
-        config.set("runners", runners);
+    public static int getMinRequiredRunners() {
+        return config.getInt("min-required-runners");
     }
 
-    public boolean contains(String value) {
-        return runners.contains(value);
+    public static int getCountdown() {
+        return config.getInt("countdown");
     }
 
-    public List<String> getRunners() {
-        return runners;
+    public static int runnersHeadstart() {
+        return config.getInt("runners-headstart");
     }
+
 }

@@ -1,20 +1,25 @@
 # FILE VERSION DO NOT TOUCH!
 file-version: 1
 # Messages, Uses MiniMessage Format.
-teleport-world-message: "<green>You have been teleported to</green>"
+teleport-world-message: "<green>You have been teleported to %manhunt_world%</green>"
 no-world-message: "<red>No World has been found or you typed wrong.</red>"
 player-not-found-message: "<red>Player not found.</red>"
 config-reload-message: "<green>Config and Messages reloaded</green>"
 death-message: "<red>You are now dead!, thanks for playing;)</red>"
 # Runners Messages
 runners-already-in-list-message: "<red>This player is already in the runners list.</red>"
-runner-added-message: "<green>has been added into runners list.</green>"
+runner-added-message: "<green>%manhunt_player% has been added into runners list.</green>"
 runners-list-message: "<green>Runners list: </green>"
 runner-not-in-list-message: "<red>This player is not in the runners list.</red>"
-runner-removed-message: "<green>has been removed from the runners list.</green>"
+runner-removed-message: "<green>%manhunt_player% has been removed from the runners list.</green>"
 # GUI messages
 start-manhunt-gui-title: "<green>Start Manhunt</green>"
 main-gui-title: "<green>MAIN GUI</green>"
 settings-gui-title: "<green>Settings</green>"
 settings-do-daylight-cycle: "<green>Do Daylight Cycle</green>"
 settings-back: "<red>Back</red>"
+# END GAME
+kill-enderdragon-message: "<red>%manhunt_player% killed the Enderdragon!</red>"
+# TABLIST
+tablist-header: "<green>Cool Tablist</green>"
+tablist-footer: "<green>COOL FOOTER</green>"

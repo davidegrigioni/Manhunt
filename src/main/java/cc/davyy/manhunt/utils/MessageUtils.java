@@ -16,6 +16,9 @@ public enum MessageUtils {
     START_MANHUNT_GUI_TITLE("start-manhunt-gui-title"),
     MAIN_GUI_TITLE("main-gui-title"),
     SETTINGS_GUI_TITLE("settings-gui-title"),
+    TABLIST_HEADER("tablist-header"),
+    TABLIST_FOOTER("tablist-footer"),
+    ENDERDRAGON_KILL_MESSAGE("kill-enderdragon-message"),
     NO_WORLD_FOUND_MESSAGE("no-world-message");
 
     private final String message;

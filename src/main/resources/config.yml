@@ -26,3 +26,20 @@ spectator-scoreboard:
 # FOR NOT HAVING PROBLEMS WITH SCOREBOARD SET THIS TO YOUR LOBBY-NAME (CASE SENSITIVE)
 lobby-world: "world"
 
+# Main Configuration part
+min-required-players: 2 # Max 10 (for now)
+max-required-players: 10 # Max 100 (for now)
+min-required-hunters: 1 # Max 10 (for now)
+min-required-runners: 1 # Max 10 (for now)
+runners-headstart: 20 # Max 1m (for now)
+countdown: 30 # Max 1m (for now)
+
+# Random Events
+dolphin-event:
+  duration:
+  repeat-delay:
+
+# Custom Tablist
+custom-tablist:
+  enabled: false
+
