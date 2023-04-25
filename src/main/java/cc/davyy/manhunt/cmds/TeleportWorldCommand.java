@@ -26,7 +26,7 @@ public class TeleportWorldCommand {
         if (world != null) {
             player.teleportAsync(world.getSpawnLocation());
             String message = instance.getMessages().getString(MessageUtils.TELEPORT_WORLD_MESSAGE.getMessage());
-            player.sendMessage(ColorUtils.colorize(message));
+            player.sendMessage(ColorUtils.colorize(message.replace("<world>", world.getName())));
 
         } else {
             String message = instance.getMessages().getString(MessageUtils.NO_WORLD_FOUND_MESSAGE.getMessage());
