@@ -17,9 +17,13 @@ import org.bukkit.inventory.meta.ItemMeta;
 public class MainGUI {
 
     private final Manhunt instance;
+    private final SettingsGUI settingsGUI;
+    private final StartManhuntGUI startManhuntGUI;
 
     public MainGUI(Manhunt instance) {
         this.instance = instance;
+        this.settingsGUI = new SettingsGUI(instance);
+        this.startManhuntGUI = new StartManhuntGUI(instance);
     }
 
     public ChestGui guiCreation() {
@@ -46,18 +50,17 @@ public class MainGUI {
 
         navigationPane.addItem(new GuiItem(settingsMenu, event -> {
             final Player player = (Player) event.getWhoClicked();
-            SettingsGUI settingsGUI = new SettingsGUI(instance);
             settingsGUI.guiCreation().show(player);
         }));
 
         ItemStack startMenu = new ItemStack(Material.COMPASS);
         ItemMeta startMenuMeta = startMenu.getItemMeta();
-        startMenuMeta.displayName(Component.text("Start"));
+        String startTitle = instance.getMessages().getString(MessageUtils.START_ITEM.getMessage());
+        startMenuMeta.displayName(ColorUtils.colorize(startTitle));
         startMenu.setItemMeta(startMenuMeta);
 
         navigationPane.addItem(new GuiItem(startMenu, event -> {
             final Player player = (Player) event.getWhoClicked();
-            StartManhuntGUI startManhuntGUI = new StartManhuntGUI(instance);
             startManhuntGUI.guiCreation().show(player);
         }));
 

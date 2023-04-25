@@ -15,6 +15,8 @@ import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.List;
+
 public class PlayerJoinListener implements Listener {
 
     private final Manhunt instance;
@@ -54,12 +56,13 @@ public class PlayerJoinListener implements Listener {
             gameScoreboard.setGameScoreboard(player);
             waitingScoreboard.removeWaitingScoreboard(player);
             gameItems(player);
+            if (player.hasPermission("manhunt.startitems")) {
+                setItemJoin(player);
+            }
         } else {
-            waitingScoreboard.setWaitingScoreboard(player);
             gameScoreboard.removeGameScoreboard(player);
             removeItems(player);
         }
-
     }
 
     private void setItemJoin(Player player) {
@@ -79,9 +82,12 @@ public class PlayerJoinListener implements Listener {
 
     private void gameItems(Player player) {
 
+        final String compassName = instance.getMessages().getString(MessageUtils.COMPASS_NAME.getMessage());
+        final List<String> compassLore = instance.getMessages().getStringList(MessageUtils.COMPASS_LORE.getMessage());
+
         ItemStack compass = new ItemBuilder(Material.COMPASS, 1)
-                .displayName("Compass")
-                .lore("Use this to track runners")
+                .displayName(ColorUtils.colorize(compassName).examinableName())
+                .lore(ColorUtils.colorize(compassLore.toString()).examinableName())
                 .build();
 
     }

@@ -2,6 +2,7 @@ package cc.davyy.manhunt.cmds;
 
 import cc.davyy.manhunt.Manhunt;
 import cc.davyy.manhunt.guis.MainGUI;
+import cc.davyy.manhunt.guis.PlayerGUI;
 import cc.davyy.manhunt.utils.ColorUtils;
 import cc.davyy.manhunt.utils.MessageUtils;
 import dev.rollczi.litecommands.argument.Arg;
@@ -22,9 +23,13 @@ import java.util.logging.Level;
 public class ManhuntCommand {
 
     private final Manhunt instance;
+    private final PlayerGUI playerGUI;
+    private final MainGUI mainGUI;
 
     public ManhuntCommand(Manhunt instance) {
         this.instance = instance;
+        this.playerGUI = new PlayerGUI(instance);
+        this.mainGUI = new MainGUI(instance);
     }
 
     @Execute
@@ -33,12 +38,13 @@ public class ManhuntCommand {
         player.sendMessage(Component.text("Available Commands:", NamedTextColor.YELLOW));
         player.sendMessage(Component.text(""));
         player.sendMessage(Component.text("- /manhunt gui: Opens the main GUI.", NamedTextColor.GRAY));
-        player.sendMessage(Component.text("- /manhunt add/addrunners: Adds a runner to the runners list.", NamedTextColor.GRAY));
-        player.sendMessage(Component.text("- /manhunt rem/removerunner: Removes a runner from the runners list.", NamedTextColor.GRAY));
+        player.sendMessage(Component.text("- /manhunt addrunner: Adds a runner to the runners list.", NamedTextColor.GRAY));
+        player.sendMessage(Component.text("- /manhunt removerunner: Removes a runner from the runners list.", NamedTextColor.GRAY));
         player.sendMessage(Component.text("- /testgui: Opens the GUI to test if it works (dev mode).", NamedTextColor.GRAY));
         player.sendMessage(Component.text("- /teleportworld: Teleports to worlds.", NamedTextColor.GRAY));
-        player.sendMessage(Component.text("- /manhunt list/listrunners: Gives a list of runners.", NamedTextColor.GRAY));
+        player.sendMessage(Component.text("- /manhunt listrunners: Gives a list of runners.", NamedTextColor.GRAY));
         player.sendMessage(Component.text("- /manhunt reload: Reloads the config and messages.", NamedTextColor.GRAY));
+        player.sendMessage(Component.text("- /manhunt join: Join a game", NamedTextColor.GRAY));
         player.sendMessage(Component.text(""));
         player.sendMessage(Component.text("Made by @davideenoo", NamedTextColor.AQUA));
         player.sendMessage(Component.text("----------------------------------------", NamedTextColor.BLUE));
@@ -101,7 +107,6 @@ public class ManhuntCommand {
     @Execute(route = "gui")
     @Permission("manhunt.gui")
     void gui(Player player) {
-        MainGUI mainGUI = new MainGUI(instance);
         mainGUI.guiCreation().show(player);
     }
 
@@ -119,4 +124,8 @@ public class ManhuntCommand {
         }
     }
 
+    @Execute(route = "join")
+    void join(Player player) {
+        playerGUI.guiCreation().show(player);
+    }
 }

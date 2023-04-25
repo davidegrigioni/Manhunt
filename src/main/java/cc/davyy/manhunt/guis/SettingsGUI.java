@@ -20,9 +20,11 @@ import org.bukkit.inventory.meta.ItemMeta;
 public class SettingsGUI {
 
     private final Manhunt instance;
+    private final MainGUI mainGUI;
 
     public SettingsGUI(Manhunt instance) {
         this.instance = instance;
+        this.mainGUI = new MainGUI(instance);
     }
 
     public ChestGui guiCreation() {
@@ -70,7 +72,6 @@ public class SettingsGUI {
         // Back to the default page
         navigationPane.addItem(new GuiItem(back, event -> {
             final Player player = (Player) event.getWhoClicked();
-            MainGUI mainGUI = new MainGUI(instance);
             mainGUI.guiCreation().show(player);
         }));
 

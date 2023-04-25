@@ -9,6 +9,8 @@ no-world-message: "<red>No World has been found or you typed wrong.</red>"
 player-not-found-message: "<red>Player not found.</red>"
 config-reload-message: "<green>Config and Messages reloaded</green>"
 death-message: "<red>You are now dead!, thanks for playing;)</red>"
+start-item: "<green>START</green>"
+start-manhunt-item: "<green>Start Manhunt</green>"
 # Runners Messages
 runners-already-in-list-message: "<red>This player is already in the runners list.</red>"
 runner-added-message: "<green><player> has been added into runners list.</green>"
@@ -21,8 +23,18 @@ main-gui-title: "<green>MAIN GUI</green>"
 settings-gui-title: "<green>Settings</green>"
 settings-do-daylight-cycle: "<green>Do Daylight Cycle</green>"
 settings-back: "<red>Back</red>"
+player-gui-title: "<green>Player GUI</green>"
 # END GAME
 kill-enderdragon-message: "<red><player> killed the Enderdragon!</red>"
 # TABLIST
 tablist-header: "<green>Cool Tablist</green>"
 tablist-footer: "<green>COOL FOOTER</green>"
+# Game Items
+compass:
+  name: "<green>Compass</green>"
+  lore: "<purple>Use this to track players</purple>"
+# QUEUE
+queue-add: "<green>You have been added to the queue.</green>"
+queue-remove: "<red>You have been removed from the queue.</red>"
+queue-join-item: "<red>Join the Queue</red>"
+queue-leave-item: "<red>Leave the Queue</red>"

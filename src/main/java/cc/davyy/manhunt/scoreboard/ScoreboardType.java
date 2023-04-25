@@ -1,7 +1,5 @@
 package cc.davyy.manhunt.scoreboard;
 
 public enum ScoreboardType {
-    WAITING,
-    GAME,
-    ENDGAME
+    WAITING, GAME, SPECTATOR, ENDGAME
 }

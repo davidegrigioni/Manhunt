@@ -9,7 +9,6 @@ import com.github.stefvanschie.inventoryframework.gui.GuiItem;
 import com.github.stefvanschie.inventoryframework.gui.type.ChestGui;
 import com.github.stefvanschie.inventoryframework.pane.OutlinePane;
 import com.github.stefvanschie.inventoryframework.pane.Pane;
-import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -18,9 +17,13 @@ import org.bukkit.inventory.meta.ItemMeta;
 public class StartManhuntGUI {
 
     private final Manhunt instance;
+    private final MainGUI mainGUI;
+    private final CreateWorld createWorld;
 
     public StartManhuntGUI(Manhunt instance) {
         this.instance = instance;
+        this.mainGUI = new MainGUI(instance);
+        this.createWorld = new CreateWorld();
     }
 
     public ChestGui guiCreation() {
@@ -48,19 +51,18 @@ public class StartManhuntGUI {
         // Back to the default page
         navigationPane.addItem(new GuiItem(back, event -> {
             final Player player = (Player) event.getWhoClicked();
-            MainGUI mainGUI = new MainGUI(instance);
             mainGUI.guiCreation().show(player);
         }));
 
         // Start Manhunt
-        ItemStack start = new ItemStack(Material.GREEN_WOOL);
-        ItemMeta startItemMeta = start.getItemMeta();
-        startItemMeta.displayName(Component.text("Start Manhunt"));
-        start.setItemMeta(startItemMeta);
+        ItemStack startManhunt = new ItemStack(Material.GREEN_WOOL);
+        ItemMeta startManhuntItemMeta = startManhunt.getItemMeta();
+        String startManhuntTitle = instance.getMessages().getString(MessageUtils.START_MANHUNT_ITEM.getMessage());
+        startManhuntItemMeta.displayName(ColorUtils.colorize(startManhuntTitle));
+        startManhunt.setItemMeta(startManhuntItemMeta);
 
-        navigationPane.addItem(new GuiItem(start, event -> {
+        navigationPane.addItem(new GuiItem(startManhunt, event -> {
             final Player player = (Player) event.getWhoClicked();
-            CreateWorld createWorld = new CreateWorld();
             createWorld.createPlayerWorlds(player);
         }));
 
