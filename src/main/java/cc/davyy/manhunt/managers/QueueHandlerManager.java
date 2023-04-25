@@ -28,8 +28,18 @@ public class QueueHandlerManager implements QueueHandler {
         queue.poll();
     }
 
+    @Override
+    public boolean hasPlayer(Player player) {
+        return false;
+    }
+
     public int getSize() {
         queue.size();
         return 0;
+    }
+
+    @Override
+    public void clear() {
+
     }
 }

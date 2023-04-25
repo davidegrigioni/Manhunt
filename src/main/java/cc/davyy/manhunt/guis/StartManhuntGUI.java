@@ -17,12 +17,10 @@ import org.bukkit.inventory.meta.ItemMeta;
 public class StartManhuntGUI {
 
     private final Manhunt instance;
-    private final MainGUI mainGUI;
     private final CreateWorld createWorld;
 
     public StartManhuntGUI(Manhunt instance) {
         this.instance = instance;
-        this.mainGUI = new MainGUI(instance);
         this.createWorld = new CreateWorld();
     }
 
@@ -51,6 +49,7 @@ public class StartManhuntGUI {
         // Back to the default page
         navigationPane.addItem(new GuiItem(back, event -> {
             final Player player = (Player) event.getWhoClicked();
+            MainGUI mainGUI = new MainGUI(instance);
             mainGUI.guiCreation().show(player);
         }));
 

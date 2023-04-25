@@ -26,9 +26,9 @@ public class PlayerJoinListener implements Listener {
 
     public PlayerJoinListener(Manhunt instance) {
         this.instance = instance;
-        waitingScoreboard = new WaitingScoreboard(instance);
-        gameScoreboard = new GameScoreboard(instance);
-        spectatorScoreboard = new SpectatorScoreboard(instance);
+        this.waitingScoreboard = new WaitingScoreboard(instance);
+        this.gameScoreboard = new GameScoreboard(instance);
+        this.spectatorScoreboard = new SpectatorScoreboard(instance);
     }
 
     @EventHandler
@@ -39,6 +39,12 @@ public class PlayerJoinListener implements Listener {
 
         if (player.getWorld().getName().equals(lobbyWorld)) {
             waitingScoreboard.setWaitingScoreboard(player);
+            if (player.hasPermission("manhunt.adminitems")) {
+                setItemJoin(player);
+            } else {
+                removeItems(player);
+                gameItems(player);
+            }
         }
 
         if (tabListEnabled) {
@@ -55,13 +61,8 @@ public class PlayerJoinListener implements Listener {
         if (!player.getWorld().getName().equals(lobbyWorld)) {
             gameScoreboard.setGameScoreboard(player);
             waitingScoreboard.removeWaitingScoreboard(player);
-            gameItems(player);
-            if (player.hasPermission("manhunt.startitems")) {
-                setItemJoin(player);
-            }
         } else {
             gameScoreboard.removeGameScoreboard(player);
-            removeItems(player);
         }
     }
 

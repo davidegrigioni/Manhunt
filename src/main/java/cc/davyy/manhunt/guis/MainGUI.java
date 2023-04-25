@@ -8,7 +8,6 @@ import com.github.stefvanschie.inventoryframework.gui.GuiItem;
 import com.github.stefvanschie.inventoryframework.gui.type.ChestGui;
 import com.github.stefvanschie.inventoryframework.pane.OutlinePane;
 import com.github.stefvanschie.inventoryframework.pane.Pane;
-import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -17,12 +16,10 @@ import org.bukkit.inventory.meta.ItemMeta;
 public class MainGUI {
 
     private final Manhunt instance;
-    private final SettingsGUI settingsGUI;
     private final StartManhuntGUI startManhuntGUI;
 
     public MainGUI(Manhunt instance) {
         this.instance = instance;
-        this.settingsGUI = new SettingsGUI(instance);
         this.startManhuntGUI = new StartManhuntGUI(instance);
     }
 
@@ -50,6 +47,7 @@ public class MainGUI {
 
         navigationPane.addItem(new GuiItem(settingsMenu, event -> {
             final Player player = (Player) event.getWhoClicked();
+            SettingsGUI settingsGUI = new SettingsGUI(instance);
             settingsGUI.guiCreation().show(player);
         }));
 
