@@ -45,7 +45,7 @@ public final class Manhunt extends JavaPlugin {
     @Override
     public void onEnable() {
 
-
+        updater();
 
         prettyConsole();
 
