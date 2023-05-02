@@ -1,9 +1,6 @@
 package cc.davyy.manhunt.engine;
 
 public enum GameState {
-
-    WAITING,
-    INGAME,
-    ENDGAME
+    WAITING, INGAME, SPECTATOR, ENDGAME
 
 }

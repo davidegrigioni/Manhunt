@@ -24,6 +24,7 @@ settings-gui-title: "<green>Settings</green>"
 settings-do-daylight-cycle: "<green>Do Daylight Cycle</green>"
 settings-back: "<red>Back</red>"
 player-gui-title: "<green>Player GUI</green>"
+games-gui-title: "<green>Games</green>"
 # END GAME
 kill-enderdragon-message: "<red><player> killed the Enderdragon!</red>"
 # TABLIST
@@ -33,8 +34,9 @@ tablist-footer: "<green>COOL FOOTER</green>"
 compass:
   name: "<green>Compass</green>"
   lore: "<purple>Use this to track players</purple>"
+game-broadcast-message: "Game starting in <seconds>"
 # QUEUE
 queue-add: "<green>You have been added to the queue.</green>"
 queue-remove: "<red>You have been removed from the queue.</red>"
-queue-join-item: "<red>Join the Queue</red>"
+queue-join-item: "<red>Join a Queue</red>"
 queue-leave-item: "<red>Leave the Queue</red>"

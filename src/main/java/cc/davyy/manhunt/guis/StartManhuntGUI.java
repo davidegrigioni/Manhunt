@@ -1,6 +1,7 @@
 package cc.davyy.manhunt.guis;
 
 import cc.davyy.manhunt.Manhunt;
+import cc.davyy.manhunt.engine.Game;
 import cc.davyy.manhunt.utils.ColorUtils;
 import cc.davyy.manhunt.utils.MessageUtils;
 import cc.davyy.manhunt.worlds.CreateWorld;
@@ -18,6 +19,7 @@ public class StartManhuntGUI {
 
     private final Manhunt instance;
     private final CreateWorld createWorld;
+    private Game game;
 
     public StartManhuntGUI(Manhunt instance) {
         this.instance = instance;
@@ -61,8 +63,10 @@ public class StartManhuntGUI {
         startManhunt.setItemMeta(startManhuntItemMeta);
 
         navigationPane.addItem(new GuiItem(startManhunt, event -> {
-            final Player player = (Player) event.getWhoClicked();
-            createWorld.createPlayerWorlds(player);
+            final Player host = (Player) event.getWhoClicked();
+            createWorld.createPlayerWorlds(host);
+            GamesGUI gamesGUI = new GamesGUI(instance);
+            gamesGUI.guiCreation().update();
         }));
 
         gui.addPane(navigationPane);

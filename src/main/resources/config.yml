@@ -6,6 +6,9 @@ file-version: 1
 # GUI Editor (Enable the chance to completely modify the gui as you want)
 # ??? (If you have an idea open a GitHub issue!)
 
+# AUTO UPDATER
+auto-update: false
+
 # Runners
 runners: []
 

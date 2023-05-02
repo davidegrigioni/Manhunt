@@ -1,7 +1,6 @@
 package cc.davyy.manhunt.guis;
 
 import cc.davyy.manhunt.Manhunt;
-import cc.davyy.manhunt.managers.QueueHandlerManager;
 import cc.davyy.manhunt.utils.ColorUtils;
 import cc.davyy.manhunt.utils.MessageUtils;
 import com.github.stefvanschie.inventoryframework.adventuresupport.ComponentHolder;
@@ -9,7 +8,6 @@ import com.github.stefvanschie.inventoryframework.gui.GuiItem;
 import com.github.stefvanschie.inventoryframework.gui.type.ChestGui;
 import com.github.stefvanschie.inventoryframework.pane.OutlinePane;
 import com.github.stefvanschie.inventoryframework.pane.Pane;
-import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -18,11 +16,9 @@ import org.bukkit.inventory.meta.ItemMeta;
 public class PlayerGUI {
 
     private final Manhunt instance;
-    private final QueueHandlerManager queueManager;
 
     public PlayerGUI(Manhunt instance) {
         this.instance = instance;
-        this.queueManager = new QueueHandlerManager(instance);
     }
 
     public ChestGui guiCreation() {
@@ -49,6 +45,8 @@ public class PlayerGUI {
 
         navigationPane.addItem(new GuiItem(queueItem, event -> {
             final Player player = (Player) event.getWhoClicked();
+            GamesGUI gamesGUI = new GamesGUI(instance);
+            gamesGUI.guiCreation().show(player);
         }));
 
         ItemStack leaveQueueItem = new ItemStack(Material.ANVIL);

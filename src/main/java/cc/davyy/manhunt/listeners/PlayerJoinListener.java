@@ -34,7 +34,7 @@ public class PlayerJoinListener implements Listener {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
         final Player player = event.getPlayer();
-        String lobbyWorld = instance.getConfiguration().getString("lobby-world");
+        final String lobbyWorld = instance.getConfiguration().getString("lobby-world");
         boolean tabListEnabled = instance.getConfiguration().getBoolean("custom-tablist.enabled");
 
         if (player.getWorld().getName().equals(lobbyWorld)) {
@@ -56,7 +56,7 @@ public class PlayerJoinListener implements Listener {
     @EventHandler
     public void onWorldChange(PlayerChangedWorldEvent event) {
         final Player player = event.getPlayer();
-        String lobbyWorld = instance.getConfiguration().getString("lobby-world");
+        final String lobbyWorld = instance.getConfiguration().getString("lobby-world");
 
         if (!player.getWorld().getName().equals(lobbyWorld)) {
             gameScoreboard.setGameScoreboard(player);

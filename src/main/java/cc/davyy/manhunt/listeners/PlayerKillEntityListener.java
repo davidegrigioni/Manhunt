@@ -1,7 +1,6 @@
 package cc.davyy.manhunt.listeners;
 
 import cc.davyy.manhunt.Manhunt;
-import cc.davyy.manhunt.engine.GameState;
 import cc.davyy.manhunt.utils.ColorUtils;
 import cc.davyy.manhunt.utils.MessageUtils;
 import org.bukkit.entity.EntityType;
@@ -24,7 +23,7 @@ public class PlayerKillEntityListener implements Listener {
 
         if (livingEntity.getType() == EntityType.ENDER_DRAGON) {
             String message = instance.getMessages().getString(MessageUtils.ENDERDRAGON_KILL_MESSAGE.getMessage().replace("<player>", livingEntity.getKiller().getName()));
-            livingEntity.getKiller().sendMessage(ColorUtils.colorize(message));
+            livingEntity.getKiller().sendMessage(ColorUtils.colorize(message.replace("<player>", livingEntity.getKiller().getName())));
         }
 
     }

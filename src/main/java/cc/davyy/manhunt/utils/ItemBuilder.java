@@ -1,7 +1,6 @@
 package cc.davyy.manhunt.utils;
 
 import net.kyori.adventure.text.Component;
-import org.bukkit.ChatColor;
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -133,26 +132,6 @@ public class ItemBuilder {
         meta.displayName(this.displayName);
         item.setItemMeta(meta);
         return this;
-    }
-
-    /**
-     * Color a display name with the given color
-     *
-     * @param color The color
-     * @return The ItemBuilder
-     */
-    public ItemBuilder colorName(ChatColor color) {
-        return displayName(color + displayName.insertion());
-    }
-
-    /**
-     * Color a display name with the given code
-     *
-     * @param code The color code
-     * @return The ItemBuilder
-     */
-    public ItemBuilder colorName(String code) {
-        return colorName(ChatColor.getByChar(code));
     }
 
     /**
@@ -453,51 +432,6 @@ public class ItemBuilder {
     }
 
     /**
-     * Build the item
-     *
-     * @return The ItemStack
-     */
-    public ItemStack build() {
-        return item;
-    }
-
-    /**
-     * Get the ItemStack
-     *
-     * @return The ItemStack
-     */
-    public ItemStack getItemStack() {
-        return item;
-    }
-
-    /**
-     * Get the ItemMeta
-     *
-     * @return The ItemMeta
-     */
-    public ItemMeta getMeta() {
-        return meta;
-    }
-
-    /**
-     * Get the material type of the item
-     *
-     * @return The material
-     */
-    public Material getMaterial() {
-        return material;
-    }
-
-    /**
-     * Get the amount of the item
-     *
-     * @return The amount
-     */
-    public int getAmount() {
-        return amount;
-    }
-
-    /**
      * Get the item display name
      *
      * @return The display name
@@ -559,6 +493,51 @@ public class ItemBuilder {
      */
     public boolean isUnbreakable() {
         return unbreakable;
+    }
+
+    /**
+     * Build the item
+     *
+     * @return The ItemStack
+     */
+    public ItemStack build() {
+        return item;
+    }
+
+    /**
+     * Get the ItemStack
+     *
+     * @return The ItemStack
+     */
+    public ItemStack getItemStack() {
+        return item;
+    }
+
+    /**
+     * Get the ItemMeta
+     *
+     * @return The ItemMeta
+     */
+    public ItemMeta getMeta() {
+        return meta;
+    }
+
+    /**
+     * Get the material type of the item
+     *
+     * @return The material
+     */
+    public Material getMaterial() {
+        return material;
+    }
+
+    /**
+     * Get the amount of the item
+     *
+     * @return The amount
+     */
+    public int getAmount() {
+        return amount;
     }
 
 }
