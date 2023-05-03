@@ -25,11 +25,13 @@ public class ManhuntCommand {
     private final Manhunt instance;
     private final PlayerGUI playerGUI;
     private final MainGUI mainGUI;
+    private final List<String> runnersList;
 
     public ManhuntCommand(Manhunt instance) {
         this.instance = instance;
         this.playerGUI = new PlayerGUI(instance);
         this.mainGUI = new MainGUI(instance);
+        this.runnersList = instance.getConfiguration().getStringList("runners");
     }
 
     @Execute
@@ -56,8 +58,6 @@ public class ManhuntCommand {
     @Permission("manhunt.addrunner")
     void runnerAdd(Player player, @Arg Player target) throws IOException {
 
-        List<String> runnersList = instance.getConfiguration().getStringList("runners");
-
         if (Bukkit.getPlayer(target.getName()) != null && Bukkit.getPlayer(target.getName()).isOnline()) {
             if (!runnersList.contains(target.getName())) {
                 runnersList.add(target.getName());
@@ -81,7 +81,6 @@ public class ManhuntCommand {
     @Execute(route = "listrunners")
     @Permission("manhunt.listrunners")
     void runnersList(Player player) {
-        List<String> runnersList = instance.getConfiguration().getStringList("runners");
         String message = instance.getMessages().getString(MessageUtils.RUNNERS_LIST_MESSAGE.getMessage());
         String runners = String.join(", ", runnersList);
         player.sendMessage(ColorUtils.colorize(message + runners));
@@ -91,10 +90,11 @@ public class ManhuntCommand {
     @Execute(route = "removerunner")
     @Permission("manhunt.deleterunner")
     void runnerDelete(Player player, @Arg Player target) throws IOException {
-        List<String> runnersList = instance.getConfiguration().getStringList("runners");
+
         if (!runnersList.contains(target.getName())) {
             String message = instance.getMessages().getString(MessageUtils.RUNNERS_NOT_IN_LIST_MESSAGE.getMessage());
             player.sendMessage(ColorUtils.colorize(message));
+
         } else {
             runnersList.remove(target.getName());
             instance.getConfiguration().set("runners", runnersList);
