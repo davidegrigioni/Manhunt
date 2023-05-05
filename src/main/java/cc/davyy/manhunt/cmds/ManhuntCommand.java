@@ -3,8 +3,7 @@ package cc.davyy.manhunt.cmds;
 import cc.davyy.manhunt.Manhunt;
 import cc.davyy.manhunt.guis.MainGUI;
 import cc.davyy.manhunt.guis.PlayerGUI;
-import cc.davyy.manhunt.utils.ColorUtils;
-import cc.davyy.manhunt.utils.MessageUtils;
+import cc.davyy.manhunt.managers.ManhuntManager;
 import dev.rollczi.litecommands.argument.Arg;
 import dev.rollczi.litecommands.command.async.Async;
 import dev.rollczi.litecommands.command.execute.Execute;
@@ -12,12 +11,9 @@ import dev.rollczi.litecommands.command.permission.Permission;
 import dev.rollczi.litecommands.command.route.Route;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import java.io.IOException;
-import java.util.List;
-import java.util.logging.Level;
 
 @Route(name = "manhunt", aliases = "mh")
 public class ManhuntCommand {
@@ -25,13 +21,13 @@ public class ManhuntCommand {
     private final Manhunt instance;
     private final PlayerGUI playerGUI;
     private final MainGUI mainGUI;
-    private final List<String> runnersList;
+    private final ManhuntManager manhuntManager;
 
     public ManhuntCommand(Manhunt instance) {
         this.instance = instance;
         this.playerGUI = new PlayerGUI(instance);
         this.mainGUI = new MainGUI(instance);
-        this.runnersList = instance.getConfiguration().getStringList("runners");
+        this.manhuntManager = new ManhuntManager(instance);
     }
 
     @Execute
@@ -57,23 +53,7 @@ public class ManhuntCommand {
     @Execute(route = "addrunner")
     @Permission("manhunt.addrunner")
     void runnerAdd(Player player, @Arg Player target) throws IOException {
-
-        if (Bukkit.getPlayer(target.getName()) != null && Bukkit.getPlayer(target.getName()).isOnline()) {
-            if (!runnersList.contains(target.getName())) {
-                runnersList.add(target.getName());
-                instance.getConfiguration().set("runners", runnersList);
-                instance.getConfiguration().save();
-                String message = instance.getMessages().getString(MessageUtils.RUNNER_ADD_MESSAGE.getMessage());
-                player.sendMessage(ColorUtils.colorize(message.replace("<player>", player.getName())));
-            } else {
-                String message = instance.getMessages().getString(MessageUtils.RUNNERS_ALREADY_IN_LIST_MESSAGE.getMessage());
-                player.sendMessage(ColorUtils.colorize(message));
-            }
-        } else {
-            String message = instance.getMessages().getString(MessageUtils.PLAYER_NOT_FOUND_MESSAGE.getMessage());
-            player.sendMessage(ColorUtils.colorize(message));
-        }
-
+        manhuntManager.addManhuntRunner(player, target);
     }
 
     // Returns runners list
@@ -81,27 +61,14 @@ public class ManhuntCommand {
     @Execute(route = "listrunners")
     @Permission("manhunt.listrunners")
     void runnersList(Player player) {
-        String message = instance.getMessages().getString(MessageUtils.RUNNERS_LIST_MESSAGE.getMessage());
-        String runners = String.join(", ", runnersList);
-        player.sendMessage(ColorUtils.colorize(message + runners));
+        manhuntManager.listRunners(player);
     }
 
     @Async
     @Execute(route = "removerunner")
     @Permission("manhunt.deleterunner")
     void runnerDelete(Player player, @Arg Player target) throws IOException {
-
-        if (!runnersList.contains(target.getName())) {
-            String message = instance.getMessages().getString(MessageUtils.RUNNERS_NOT_IN_LIST_MESSAGE.getMessage());
-            player.sendMessage(ColorUtils.colorize(message));
-
-        } else {
-            runnersList.remove(target.getName());
-            instance.getConfiguration().set("runners", runnersList);
-            instance.getConfiguration().save();
-            String message = instance.getMessages().getString(MessageUtils.RUNNER_REMOVED_MESSAGE.getMessage());
-            player.sendMessage(ColorUtils.colorize(message.replace("<player>", player.getName())));
-        }
+        manhuntManager.deleteRunners(player, target);
     }
 
     @Execute(route = "gui")
@@ -114,14 +81,7 @@ public class ManhuntCommand {
     @Execute(route = "reload")
     @Permission("manhunt.reload")
     void reload(Player player) {
-        try {
-            instance.getConfiguration().reload();
-            instance.getMessages().reload();
-            String message = instance.getMessages().getString(MessageUtils.CONFIG_RELOADED_MESSAGE.getMessage());
-            player.sendMessage(ColorUtils.colorize(message));
-        } catch (IOException ex) {
-            instance.getLogger().log(Level.SEVERE, "An error occurred whilst loading the config!", ex);
-        }
+        manhuntManager.manhuntReload(player);
     }
 
     @Execute(route = "join")

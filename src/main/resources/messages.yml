@@ -40,3 +40,4 @@ queue-add: "<green>You have been added to the queue.</green>"
 queue-remove: "<red>You have been removed from the queue.</red>"
 queue-join-item: "<red>Join a Queue</red>"
 queue-leave-item: "<red>Leave the Queue</red>"
+# Help Message

@@ -1,9 +1,6 @@
 package cc.davyy.manhunt.listeners;
 
 import cc.davyy.manhunt.Manhunt;
-import cc.davyy.manhunt.scoreboard.GameScoreboard;
-import cc.davyy.manhunt.scoreboard.SpectatorScoreboard;
-import cc.davyy.manhunt.scoreboard.WaitingScoreboard;
 import cc.davyy.manhunt.utils.ColorUtils;
 import cc.davyy.manhunt.utils.ItemBuilder;
 import cc.davyy.manhunt.utils.MessageUtils;
@@ -20,15 +17,9 @@ import java.util.List;
 public class PlayerJoinListener implements Listener {
 
     private final Manhunt instance;
-    private final WaitingScoreboard waitingScoreboard;
-    private final GameScoreboard gameScoreboard;
-    private final SpectatorScoreboard spectatorScoreboard;
 
     public PlayerJoinListener(Manhunt instance) {
         this.instance = instance;
-        this.waitingScoreboard = new WaitingScoreboard(instance);
-        this.gameScoreboard = new GameScoreboard(instance);
-        this.spectatorScoreboard = new SpectatorScoreboard(instance);
     }
 
     @EventHandler
@@ -36,16 +27,6 @@ public class PlayerJoinListener implements Listener {
         final Player player = event.getPlayer();
         final String lobbyWorld = instance.getConfiguration().getString("lobby-world");
         boolean tabListEnabled = instance.getConfiguration().getBoolean("custom-tablist.enabled");
-
-        if (player.getWorld().getName().equals(lobbyWorld)) {
-            waitingScoreboard.setWaitingScoreboard(player);
-            if (player.hasPermission("manhunt.adminitems")) {
-                setItemJoin(player);
-            } else {
-                removeItems(player);
-                gameItems(player);
-            }
-        }
 
         if (tabListEnabled) {
             customTablist(player);
@@ -58,12 +39,6 @@ public class PlayerJoinListener implements Listener {
         final Player player = event.getPlayer();
         final String lobbyWorld = instance.getConfiguration().getString("lobby-world");
 
-        if (!player.getWorld().getName().equals(lobbyWorld)) {
-            gameScoreboard.setGameScoreboard(player);
-            waitingScoreboard.removeWaitingScoreboard(player);
-        } else {
-            gameScoreboard.removeGameScoreboard(player);
-        }
     }
 
     private void setItemJoin(Player player) {

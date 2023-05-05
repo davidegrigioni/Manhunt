@@ -1,8 +1,7 @@
 package cc.davyy.manhunt.cmds;
 
 import cc.davyy.manhunt.Manhunt;
-import cc.davyy.manhunt.utils.ColorUtils;
-import cc.davyy.manhunt.utils.MessageUtils;
+import cc.davyy.manhunt.managers.ManhuntManager;
 import dev.rollczi.litecommands.argument.Arg;
 import dev.rollczi.litecommands.command.execute.Execute;
 import dev.rollczi.litecommands.command.permission.Permission;
@@ -15,23 +14,16 @@ import org.bukkit.entity.Player;
 public class TeleportWorldCommand {
 
     private final Manhunt instance;
+    private final ManhuntManager manhuntManager;
 
     public TeleportWorldCommand(Manhunt instance) {
         this.instance = instance;
+        this.manhuntManager = new ManhuntManager(instance);
     }
 
     @Execute
     void teleportWorld(Player player, @Arg World world) {
-
-        if (world != null) {
-            player.teleportAsync(world.getSpawnLocation());
-            String message = instance.getMessages().getString(MessageUtils.TELEPORT_WORLD_MESSAGE.getMessage());
-            player.sendMessage(ColorUtils.colorize(message.replace("<world>", world.getName())));
-
-        } else {
-            String message = instance.getMessages().getString(MessageUtils.NO_WORLD_FOUND_MESSAGE.getMessage());
-            player.sendMessage(ColorUtils.colorize(message));
-        }
+        manhuntManager.worldTeleport(player, world);
     }
 
 }

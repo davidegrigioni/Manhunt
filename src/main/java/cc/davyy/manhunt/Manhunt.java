@@ -2,10 +2,8 @@ package cc.davyy.manhunt;
 
 import cc.davyy.manhunt.cmds.ManhuntCommand;
 import cc.davyy.manhunt.cmds.TeleportWorldCommand;
-import cc.davyy.manhunt.cmds.TestGUICommand;
 import cc.davyy.manhunt.engine.Game;
 import cc.davyy.manhunt.listeners.*;
-import cc.davyy.manhunt.managers.ScoreboardManager;
 import cc.davyy.manhunt.placeholders.ManhuntExpansion;
 import cc.davyy.manhunt.utils.InvalidUsage;
 import cc.davyy.manhunt.arguments.PlayerArgument;
@@ -39,7 +37,6 @@ public final class Manhunt extends JavaPlugin {
     private LiteCommands<CommandSender> liteCommands;
     private YamlDocument config;
     private YamlDocument messages;
-    private ScoreboardManager scoreboardManager;
     private Game game;
 
     @Override
@@ -57,8 +54,6 @@ public final class Manhunt extends JavaPlugin {
 
         registerBStats();
 
-        registerManagers();
-
         if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
             registerPlaceholders();
         }
@@ -69,8 +64,7 @@ public final class Manhunt extends JavaPlugin {
         this.liteCommands = LiteBukkitFactory.builder(this.getServer(), "manhunt")
                 .commandInstance(
                         new ManhuntCommand(this),
-                        new TeleportWorldCommand(this),
-                        new TestGUICommand(this))
+                        new TeleportWorldCommand(this))
                 .contextualBind(Player.class, new BukkitOnlyPlayerContextual<>("This command is only available for players!"))
                 .argument(World.class, new WorldArgument(this))
                 .argument(Player.class, new PlayerArgument(this))
@@ -110,10 +104,6 @@ public final class Manhunt extends JavaPlugin {
         int pluginId = 18248;
 
         Metrics metrics = new Metrics(this, pluginId);
-    }
-
-    private void registerManagers() {
-        scoreboardManager = new ScoreboardManager(this);
     }
 
     private void prettyConsole() {
