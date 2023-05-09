@@ -73,7 +73,6 @@ public class ManhuntManager {
             instance.getMessages().reload();
             String message = instance.getMessages().getString(MessageUtils.CONFIG_RELOADED_MESSAGE.getMessage());
             player.sendMessage(ColorUtils.colorize(message));
-
         } catch (IOException ex) {
             instance.getLogger().log(Level.SEVERE, "An error occurred whilst loading the config!", ex);
         }
