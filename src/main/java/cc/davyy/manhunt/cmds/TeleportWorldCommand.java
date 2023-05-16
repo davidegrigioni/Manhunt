@@ -13,12 +13,10 @@ import org.bukkit.entity.Player;
 @Permission("manhunt.tpw")
 public class TeleportWorldCommand {
 
-    private final Manhunt instance;
     private final ManhuntManager manhuntManager;
 
     public TeleportWorldCommand(Manhunt instance) {
-        this.instance = instance;
-        this.manhuntManager = new ManhuntManager(instance);
+        this.manhuntManager = instance.getManhuntManager();
     }
 
     @Execute

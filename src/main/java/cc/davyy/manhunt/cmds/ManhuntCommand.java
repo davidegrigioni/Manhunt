@@ -18,16 +18,14 @@ import java.io.IOException;
 @Route(name = "manhunt", aliases = "mh")
 public class ManhuntCommand {
 
-    private final Manhunt instance;
     private final PlayerGUI playerGUI;
     private final MainGUI mainGUI;
     private final ManhuntManager manhuntManager;
 
     public ManhuntCommand(Manhunt instance) {
-        this.instance = instance;
         this.playerGUI = new PlayerGUI(instance);
         this.mainGUI = new MainGUI(instance);
-        this.manhuntManager = new ManhuntManager(instance);
+        this.manhuntManager = instance.getManhuntManager();
     }
 
     @Execute

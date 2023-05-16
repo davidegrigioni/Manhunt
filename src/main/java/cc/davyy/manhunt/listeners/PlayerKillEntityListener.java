@@ -9,6 +9,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
 
+import java.util.Objects;
+
 public class PlayerKillEntityListener implements Listener {
 
     private final Manhunt instance;
@@ -22,7 +24,7 @@ public class PlayerKillEntityListener implements Listener {
         LivingEntity livingEntity = event.getEntity();
 
         if (livingEntity.getType() == EntityType.ENDER_DRAGON) {
-            String message = instance.getMessages().getString(MessageUtils.ENDERDRAGON_KILL_MESSAGE.getMessage().replace("<player>", livingEntity.getKiller().getName()));
+            String message = instance.getMessages().getString(MessageUtils.ENDERDRAGON_KILL_MESSAGE.getMessage().replace("<player>", Objects.requireNonNull(livingEntity.getKiller()).getName()));
             livingEntity.getKiller().sendMessage(ColorUtils.colorize(message.replace("<player>", livingEntity.getKiller().getName())));
         }
 

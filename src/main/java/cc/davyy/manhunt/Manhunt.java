@@ -4,6 +4,7 @@ import cc.davyy.manhunt.cmds.ManhuntCommand;
 import cc.davyy.manhunt.cmds.TeleportWorldCommand;
 import cc.davyy.manhunt.engine.Game;
 import cc.davyy.manhunt.listeners.*;
+import cc.davyy.manhunt.managers.ManhuntManager;
 import cc.davyy.manhunt.placeholders.ManhuntExpansion;
 import cc.davyy.manhunt.utils.InvalidUsage;
 import cc.davyy.manhunt.arguments.PlayerArgument;
@@ -34,10 +35,10 @@ import java.util.Objects;
 
 public final class Manhunt extends JavaPlugin {
 
-    private LiteCommands<CommandSender> liteCommands;
     private YamlDocument config;
     private YamlDocument messages;
-    private Game game;
+
+    private ManhuntManager manhuntManager;
 
     @Override
     public void onEnable() {
@@ -50,6 +51,8 @@ public final class Manhunt extends JavaPlugin {
 
         registerConfig();
 
+        registerManagers();
+
         registerListeners();
 
         registerBStats();
@@ -61,7 +64,7 @@ public final class Manhunt extends JavaPlugin {
     }
 
     private void registerCommands() {
-        this.liteCommands = LiteBukkitFactory.builder(this.getServer(), "manhunt")
+        LiteCommands<CommandSender> liteCommands = LiteBukkitFactory.builder(this.getServer(), "manhunt")
                 .commandInstance(
                         new ManhuntCommand(this),
                         new TeleportWorldCommand(this))
@@ -74,19 +77,26 @@ public final class Manhunt extends JavaPlugin {
 
     private void registerConfig() {
         try {
+
             config = YamlDocument.create(new File(getDataFolder(), "config.yml"), Objects.requireNonNull(getResource("config.yml")),
                     GeneralSettings.DEFAULT,
                     LoaderSettings.builder().setAutoUpdate(true).build(),
                     DumperSettings.DEFAULT,
                     UpdaterSettings.builder().setVersioning(new BasicVersioning("file-version")).build());
+
             messages = YamlDocument.create(new File(getDataFolder(), "messages.yml"), Objects.requireNonNull(getResource("messages.yml")),
                     GeneralSettings.DEFAULT,
                     LoaderSettings.builder().setAutoUpdate(true).build(),
                     DumperSettings.DEFAULT,
                     UpdaterSettings.builder().setVersioning(new BasicVersioning("file-version")).build());
+
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+    }
+
+    private void registerManagers() {
+        manhuntManager = new ManhuntManager(this);
     }
 
     private void registerListeners() {
@@ -132,6 +142,5 @@ public final class Manhunt extends JavaPlugin {
         return messages;
     }
 
-    public Game getGame() { return game; }
-
+    public ManhuntManager getManhuntManager() { return manhuntManager; }
 }

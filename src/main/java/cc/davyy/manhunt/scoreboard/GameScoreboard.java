@@ -1,7 +1,6 @@
 package cc.davyy.manhunt.scoreboard;
 
 import cc.davyy.manhunt.Manhunt;
-import cc.davyy.manhunt.managers.ScoreboardManager;
 import org.bukkit.entity.Player;
 
 public class GameScoreboard {

@@ -9,6 +9,7 @@ import org.bukkit.entity.Player;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
 import java.util.logging.Level;
 
 public class ManhuntManager {
@@ -22,14 +23,20 @@ public class ManhuntManager {
         this.runnersList = instance.getConfiguration().getStringList("runners");
     }
 
-    public void addManhuntRunner(Player player, Player target) throws IOException {
+    public void addManhuntRunner(Player player, Player target) {
 
-        if (Bukkit.getPlayer(target.getName()) != null && Bukkit.getPlayer(target.getName()).isOnline()) {
+        if (Bukkit.getPlayer(target.getName()) != null && Objects.requireNonNull(Bukkit.getPlayer(target.getName())).isOnline()) {
 
             if (!runnersList.contains(target.getName())) {
                 runnersList.add(target.getName());
                 instance.getConfiguration().set("runners", runnersList);
-                instance.getConfiguration().save();
+
+                try {
+                    instance.getConfiguration().save();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+
                 String message = instance.getMessages().getString(MessageUtils.RUNNER_ADD_MESSAGE.getMessage());
                 player.sendMessage(ColorUtils.colorize(message.replace("<player>", player.getName())));
 
@@ -51,7 +58,7 @@ public class ManhuntManager {
         player.sendMessage(ColorUtils.colorize(message + runners));
     }
 
-    public void deleteRunners(Player player, Player target) throws IOException {
+    public void deleteRunners(Player player, Player target) {
 
         if (!runnersList.contains(target.getName())) {
             String message = instance.getMessages().getString(MessageUtils.RUNNERS_NOT_IN_LIST_MESSAGE.getMessage());
@@ -60,7 +67,13 @@ public class ManhuntManager {
         } else {
             runnersList.remove(target.getName());
             instance.getConfiguration().set("runners", runnersList);
-            instance.getConfiguration().save();
+
+            try {
+                instance.getConfiguration().save();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
             String message = instance.getMessages().getString(MessageUtils.RUNNER_REMOVED_MESSAGE.getMessage());
             player.sendMessage(ColorUtils.colorize(message.replace("<player>", player.getName())));
         }
