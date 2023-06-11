@@ -13,8 +13,6 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.entity.Player;
 
-import java.io.IOException;
-
 @Route(name = "manhunt", aliases = "mh")
 public class ManhuntCommand {
 
@@ -50,7 +48,7 @@ public class ManhuntCommand {
     @Async
     @Execute(route = "addrunner")
     @Permission("manhunt.addrunner")
-    void runnerAdd(Player player, @Arg Player target) throws IOException {
+    void runnerAdd(Player player, @Arg Player target) {
         manhuntManager.addManhuntRunner(player, target);
     }
 
@@ -65,7 +63,7 @@ public class ManhuntCommand {
     @Async
     @Execute(route = "removerunner")
     @Permission("manhunt.deleterunner")
-    void runnerDelete(Player player, @Arg Player target) throws IOException {
+    void runnerDelete(Player player, @Arg Player target) {
         manhuntManager.deleteRunners(player, target);
     }
 

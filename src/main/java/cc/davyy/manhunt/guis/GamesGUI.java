@@ -1,7 +1,6 @@
 package cc.davyy.manhunt.guis;
 
 import cc.davyy.manhunt.Manhunt;
-import cc.davyy.manhunt.engine.Game;
 import cc.davyy.manhunt.utils.ColorUtils;
 import cc.davyy.manhunt.utils.MessageUtils;
 import com.github.stefvanschie.inventoryframework.adventuresupport.ComponentHolder;
@@ -10,13 +9,8 @@ import com.github.stefvanschie.inventoryframework.gui.type.ChestGui;
 import com.github.stefvanschie.inventoryframework.pane.OutlinePane;
 import com.github.stefvanschie.inventoryframework.pane.Pane;
 import org.bukkit.Material;
-import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.inventory.meta.SkullMeta;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class GamesGUI {
 
@@ -50,31 +44,6 @@ public class GamesGUI {
         gui.addPane(navigationPane);
 
         return gui;
-    }
-
-    public void updateGamesGUI() {
-        List<Player> gameCreators = new ArrayList<>();
-        for (Game game : runningGames) {
-            if (game.getHost() != null) {
-                gameCreators.add(game.getHost());
-            }
-        }
-
-        // Add player head item for each game creator to joinGUI
-        int slot = 0;
-        for (Player creator : gameCreators) {
-            ItemStack playerHead = new ItemStack(Material.PLAYER_HEAD);
-            SkullMeta skullMeta = (SkullMeta) playerHead.getItemMeta();
-            skullMeta.setOwningPlayer(creator);
-            skullMeta.displayName(creator.displayName());
-            playerHead.setItemMeta(skullMeta);
-
-            this.guiCreation()..setItem(slot, new GuiItem(playerHead, event -> {
-                // Code for joining game
-            }));
-
-            slot++;
-        }
     }
 
 }

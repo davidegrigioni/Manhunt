@@ -2,7 +2,6 @@ package cc.davyy.manhunt;
 
 import cc.davyy.manhunt.cmds.ManhuntCommand;
 import cc.davyy.manhunt.cmds.TeleportWorldCommand;
-import cc.davyy.manhunt.engine.Game;
 import cc.davyy.manhunt.listeners.*;
 import cc.davyy.manhunt.managers.ManhuntManager;
 import cc.davyy.manhunt.placeholders.ManhuntExpansion;
@@ -100,10 +99,8 @@ public final class Manhunt extends JavaPlugin {
     }
 
     private void registerListeners() {
-        getServer().getPluginManager().registerEvents(new PlayerJoinListener(this), this);
         getServer().getPluginManager().registerEvents(new SpectatorListener(this), this);
         getServer().getPluginManager().registerEvents(new PlayerKillEntityListener(this), this);
-        getServer().getPluginManager().registerEvents(new PlayerTrackerListener(this), this);
     }
 
     private void registerPlaceholders() {

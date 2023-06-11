@@ -1,7 +1,6 @@
 package cc.davyy.manhunt.guis;
 
 import cc.davyy.manhunt.Manhunt;
-import cc.davyy.manhunt.engine.Game;
 import cc.davyy.manhunt.utils.ColorUtils;
 import cc.davyy.manhunt.utils.MessageUtils;
 import cc.davyy.manhunt.worlds.CreateWorld;
@@ -19,7 +18,6 @@ public class StartManhuntGUI {
 
     private final Manhunt instance;
     private final CreateWorld createWorld;
-    private Game game;
 
     public StartManhuntGUI(Manhunt instance) {
         this.instance = instance;
