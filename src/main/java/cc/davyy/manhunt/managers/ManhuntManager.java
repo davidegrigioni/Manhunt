@@ -25,7 +25,9 @@ public class ManhuntManager {
 
     public void addManhuntRunner(Player player, Player target) {
 
-        if (Bukkit.getPlayer(target.getName()) != null && Objects.requireNonNull(Bukkit.getPlayer(target.getName())).isOnline()) {
+        boolean checkPlayer = Bukkit.getPlayer(target.getName()) != null && Objects.requireNonNull(Bukkit.getPlayer(target.getName())).isOnline();
+
+        if (checkPlayer) {
 
             if (!runnersList.contains(target.getName())) {
                 runnersList.add(target.getName());
@@ -33,8 +35,8 @@ public class ManhuntManager {
 
                 try {
                     instance.getConfiguration().save();
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
+                } catch (IOException ex) {
+                    instance.getLogger().log(Level.SEVERE, "An error occurred whilst adding a new runner", ex);
                 }
 
                 String message = instance.getMessages().getString(MessageUtils.RUNNER_ADD_MESSAGE.getMessage());
@@ -70,8 +72,8 @@ public class ManhuntManager {
 
             try {
                 instance.getConfiguration().save();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+            } catch (IOException ex) {
+                instance.getLogger().log(Level.SEVERE, "An error occurred whilst removing a runner", ex);
             }
 
             String message = instance.getMessages().getString(MessageUtils.RUNNER_REMOVED_MESSAGE.getMessage());
