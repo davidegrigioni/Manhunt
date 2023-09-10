@@ -1,9 +1,6 @@
 package cc.davyy.manhunt.cmds;
 
 import cc.davyy.manhunt.Manhunt;
-import cc.davyy.manhunt.guis.MainGUI;
-import cc.davyy.manhunt.guis.PlayerGUI;
-import cc.davyy.manhunt.managers.ManhuntManager;
 import dev.rollczi.litecommands.argument.Arg;
 import dev.rollczi.litecommands.command.async.Async;
 import dev.rollczi.litecommands.command.execute.Execute;
@@ -16,14 +13,10 @@ import org.bukkit.entity.Player;
 @Route(name = "manhunt", aliases = "mh")
 public class ManhuntCommand {
 
-    private final PlayerGUI playerGUI;
-    private final MainGUI mainGUI;
-    private final ManhuntManager manhuntManager;
+    private final Manhunt instance;
 
     public ManhuntCommand(Manhunt instance) {
-        this.playerGUI = new PlayerGUI(instance);
-        this.mainGUI = new MainGUI(instance);
-        this.manhuntManager = instance.getManhuntManager();
+        this.instance = instance;
     }
 
     @Execute
@@ -44,44 +37,11 @@ public class ManhuntCommand {
         player.sendMessage(Component.text("----------------------------------------", NamedTextColor.BLUE));
     }
 
-    // Adds Runner into Runner list
     @Async
     @Execute(route = "addrunner")
     @Permission("manhunt.addrunner")
     void runnerAdd(Player player, @Arg Player target) {
-        manhuntManager.addManhuntRunner(player, target);
+        instance.getManhuntManager().addRunner(player, target);
     }
 
-    // Returns runners list
-    @Async
-    @Execute(route = "listrunners")
-    @Permission("manhunt.listrunners")
-    void runnersList(Player player) {
-        manhuntManager.listRunners(player);
-    }
-
-    @Async
-    @Execute(route = "removerunner")
-    @Permission("manhunt.deleterunner")
-    void runnerDelete(Player player, @Arg Player target) {
-        manhuntManager.deleteRunners(player, target);
-    }
-
-    @Execute(route = "gui")
-    @Permission("manhunt.gui")
-    void gui(Player player) {
-        mainGUI.guiCreation().show(player);
-    }
-
-    @Async
-    @Execute(route = "reload")
-    @Permission("manhunt.reload")
-    void reload(Player player) {
-        manhuntManager.manhuntReload(player);
-    }
-
-    @Execute(route = "join")
-    void join(Player player) {
-        playerGUI.guiCreation().show(player);
-    }
 }

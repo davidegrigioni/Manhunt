@@ -1,13 +1,12 @@
 package cc.davyy.manhunt;
 
 import cc.davyy.manhunt.cmds.ManhuntCommand;
-import cc.davyy.manhunt.cmds.TeleportWorldCommand;
 import cc.davyy.manhunt.listeners.*;
 import cc.davyy.manhunt.managers.ManhuntManager;
 import cc.davyy.manhunt.placeholders.ManhuntExpansion;
 import cc.davyy.manhunt.utils.InvalidUsage;
-import cc.davyy.manhunt.arguments.PlayerArgument;
-import cc.davyy.manhunt.arguments.WorldArgument;
+import cc.davyy.manhunt.utils.arguments.PlayerArgument;
+import cc.davyy.manhunt.utils.arguments.WorldArgument;
 import com.moleculepowered.api.Console;
 import com.moleculepowered.api.updater.Updater;
 import com.moleculepowered.api.updater.provider.GithubProvider;
@@ -31,13 +30,15 @@ import org.jetbrains.annotations.NotNull;
 import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
+import java.util.logging.Level;
 
 public final class Manhunt extends JavaPlugin {
 
     private YamlDocument config;
     private YamlDocument messages;
-
     private ManhuntManager manhuntManager;
+    private Metrics metrics;
+    private LiteCommands<CommandSender> liteCommands;
 
     @Override
     public void onEnable() {
@@ -63,10 +64,9 @@ public final class Manhunt extends JavaPlugin {
     }
 
     private void registerCommands() {
-        LiteCommands<CommandSender> liteCommands = LiteBukkitFactory.builder(this.getServer(), "manhunt")
+        liteCommands = LiteBukkitFactory.builder(this.getServer(), "manhunt")
                 .commandInstance(
-                        new ManhuntCommand(this),
-                        new TeleportWorldCommand(this))
+                        new ManhuntCommand(this))
                 .contextualBind(Player.class, new BukkitOnlyPlayerContextual<>("This command is only available for players!"))
                 .argument(World.class, new WorldArgument(this))
                 .argument(Player.class, new PlayerArgument(this))
@@ -90,7 +90,7 @@ public final class Manhunt extends JavaPlugin {
                     UpdaterSettings.builder().setVersioning(new BasicVersioning("file-version")).build());
 
         } catch (IOException ex) {
-            ex.printStackTrace();
+            getLogger().log(Level.SEVERE, "Could not create Configs", ex);
         }
     }
 
@@ -110,7 +110,7 @@ public final class Manhunt extends JavaPlugin {
     private void registerBStats() {
         int pluginId = 18248;
 
-        Metrics metrics = new Metrics(this, pluginId);
+        metrics = new Metrics(this, pluginId);
     }
 
     private void prettyConsole() {

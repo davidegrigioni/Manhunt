@@ -1,7 +1,6 @@
 package cc.davyy.manhunt.listeners;
 
 import cc.davyy.manhunt.Manhunt;
-import cc.davyy.manhunt.utils.ColorUtils;
 import cc.davyy.manhunt.utils.MessageUtils;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
