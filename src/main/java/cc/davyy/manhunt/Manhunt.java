@@ -42,13 +42,13 @@ public final class Manhunt extends JavaPlugin {
     @Override
     public void onEnable() {
 
+        registerConfig();
+
         updater();
 
         prettyConsole();
 
         registerCommands();
-
-        registerConfig();
 
         registerManagers();
 
