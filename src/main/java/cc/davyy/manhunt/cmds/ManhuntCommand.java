@@ -8,6 +8,7 @@ import dev.rollczi.litecommands.command.permission.Permission;
 import dev.rollczi.litecommands.command.route.Route;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
+import org.bukkit.World;
 import org.bukkit.entity.Player;
 
 @Route(name = "manhunt", aliases = "mh")
@@ -38,10 +39,22 @@ public class ManhuntCommand {
     }
 
     @Async
-    @Execute(route = "addrunner")
+    @Execute(route = "addrunner", aliases = "ar")
     @Permission("manhunt.addrunner")
-    void runnerAdd(Player player, @Arg Player target) {
-        instance.getManhuntManager().addRunner(player, target);
-    }
+    void addRunner(Player player, @Arg Player target) { instance.getManhuntManager().addRunner(player, target); }
+
+    @Execute(route = "listrunners", aliases = "lr")
+    @Permission("manhunt.listrunners")
+    void listRunners(Player player) { instance.getManhuntManager().listRunners(player); }
+
+    @Execute(route = "deleterunner", aliases = "dr")
+    @Permission("manhunt.deleterunner")
+    void deleteRunner(Player player, @Arg Player target) { instance.getManhuntManager().deleteRunner(player, target); }
+
+    @Execute(route = "teleportworld", aliases = "tpw")
+    @Permission("manhunt.teleportworld")
+    void teleportWorld(Player player, @Arg World world) { instance.getManhuntManager().worldTeleport(player, world); }
+
+
 
 }
