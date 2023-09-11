@@ -1,6 +1,7 @@
 package cc.davyy.manhunt.cmds;
 
 import cc.davyy.manhunt.Manhunt;
+import cc.davyy.manhunt.gui.MainGUI;
 import dev.rollczi.litecommands.argument.Arg;
 import dev.rollczi.litecommands.command.async.Async;
 import dev.rollczi.litecommands.command.execute.Execute;
@@ -43,10 +44,12 @@ public class ManhuntCommand {
     @Permission("manhunt.addrunner")
     void addRunner(Player player, @Arg Player target) { instance.getManhuntManager().addRunner(player, target); }
 
+    @Async
     @Execute(route = "listrunners", aliases = "lr")
     @Permission("manhunt.listrunners")
     void listRunners(Player player) { instance.getManhuntManager().listRunners(player); }
 
+    @Async
     @Execute(route = "deleterunner", aliases = "dr")
     @Permission("manhunt.deleterunner")
     void deleteRunner(Player player, @Arg Player target) { instance.getManhuntManager().deleteRunner(player, target); }
@@ -55,6 +58,13 @@ public class ManhuntCommand {
     @Permission("manhunt.teleportworld")
     void teleportWorld(Player player, @Arg World world) { instance.getManhuntManager().worldTeleport(player, world); }
 
+    @Async
+    @Execute(route = "reload")
+    @Permission("manhunt.reload")
+    void reloadCommand(Player player) { instance.getManhuntManager().manhuntReload(player); }
 
+    @Execute(route = "gui")
+    @Permission("manhunt.gui")
+    void openGui(Player player) { new MainGUI(instance).guiCreation(player).open(player); }
 
 }

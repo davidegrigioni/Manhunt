@@ -4,8 +4,12 @@ import cc.davyy.ddapi.utils.chat.ChatUtils;
 import cc.davyy.manhunt.Manhunt;
 import cc.davyy.manhunt.engine.PlayerStatus;
 import cc.davyy.manhunt.utils.MessageUtils;
+import com.destroystokyo.paper.profile.PlayerProfile;
+import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.SkullMeta;
 
 import java.io.IOException;
 import java.util.List;
@@ -30,6 +34,7 @@ public class ManhuntManager {
                 if (!runnersList.contains(target.getName())) {
                     runnersList.add(target.getName());
                     try {
+                        instance.getConfiguration().set("runners", runnersList);
                         instance.getConfiguration().save();
                         String runnerAdded = instance.getMessages().getString(MessageUtils.RUNNER_ADD_MESSAGE.getMessage());
                         ChatUtils.sendMessage(player, runnerAdded.replace("<player>", target.getName()));
@@ -56,6 +61,7 @@ public class ManhuntManager {
         }
         runnersList.remove(target.getName());
         try {
+            instance.getConfiguration().set("runners", runnersList);
             instance.getConfiguration().save();
             String runnerRemoved = instance.getMessages().getString(MessageUtils.RUNNER_REMOVED_MESSAGE.getMessage());
             ChatUtils.sendMessage(player, runnerRemoved.replace("<player>", target.getName()));

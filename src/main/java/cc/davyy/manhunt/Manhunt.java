@@ -1,15 +1,11 @@
 package cc.davyy.manhunt;
 
 import cc.davyy.manhunt.cmds.ManhuntCommand;
-import cc.davyy.manhunt.listeners.*;
 import cc.davyy.manhunt.managers.ManhuntManager;
 import cc.davyy.manhunt.placeholders.ManhuntExpansion;
 import cc.davyy.manhunt.utils.InvalidUsage;
 import cc.davyy.manhunt.utils.arguments.PlayerArgument;
 import cc.davyy.manhunt.utils.arguments.WorldArgument;
-import com.moleculepowered.api.Console;
-import com.moleculepowered.api.updater.Updater;
-import com.moleculepowered.api.updater.provider.GithubProvider;
 import dev.dejvokep.boostedyaml.YamlDocument;
 import dev.dejvokep.boostedyaml.dvs.versioning.BasicVersioning;
 import dev.dejvokep.boostedyaml.settings.dumper.DumperSettings;
@@ -45,15 +41,9 @@ public final class Manhunt extends JavaPlugin {
 
         registerConfig();
 
-        updater();
-
-        prettyConsole();
-
         registerCommands();
 
         registerManagers();
-
-        registerListeners();
 
         registerBStats();
 
@@ -98,11 +88,6 @@ public final class Manhunt extends JavaPlugin {
         manhuntManager = new ManhuntManager(this);
     }
 
-    private void registerListeners() {
-        getServer().getPluginManager().registerEvents(new SpectatorListener(this), this);
-        getServer().getPluginManager().registerEvents(new PlayerKillEntityListener(this), this);
-    }
-
     private void registerPlaceholders() {
         new ManhuntExpansion(this).register();
     }
@@ -111,22 +96,6 @@ public final class Manhunt extends JavaPlugin {
         int pluginId = 18248;
 
         metrics = new Metrics(this, pluginId);
-    }
-
-    private void prettyConsole() {
-        Console.setPrettyPrint(true);
-        Console.setDebugToggle(true);
-        Console.setPrefix("[Manhunt]");
-    }
-
-    private void updater() {
-        new Updater(this)
-                .addProvider(new GithubProvider("davidegrigioni/Manhunt"))
-                .setEnableToggle(this.getConfiguration().getBoolean("auto-update"))
-                .setInterval("2h")
-                .setEventHandler(new UpdateListener())
-                .setPermission("manhunt.admin.update")
-                .scheduleAsync();
     }
 
     @NotNull
